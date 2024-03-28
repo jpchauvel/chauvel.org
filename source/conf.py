@@ -23,8 +23,8 @@ html_logo = "hellhound.gif"
 
 extensions = [
     "myst_parser",
-    "sphinx_tags",
-    "sphinx_design",
+    "ablog",
+    "sphinx.ext.intersphinx",
 ]
 
 templates_path = ["_templates"]
@@ -55,25 +55,6 @@ myst_enable_extensions = [
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "furo"
+html_theme = "pydata_sphinx_theme"
+
 html_static_path = ["_static"]
-
-# -- Options for Sphinx Tags -------------------------------------------------
-# https://sphinx-tags.readthedocs.io/en/latest/configuration.html
-
-tags_create_tags = True
-
-tags_extension = ["md"]
-
-tags_page_header = ""
-
-tags_index_head = ""
-
-tags_page_title = "Tag"
-
-tags_create_badges = True
-
-tags_badge_colors = {
-    "python": "success",
-    "*": "primary",
-}

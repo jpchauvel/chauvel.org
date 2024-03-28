@@ -1,9 +1,6 @@
 Hello Wolrd!
 ============
 
-```{tags} python, hello-world
-```
-
 ## *This is a test*
 
 > Blockquoute

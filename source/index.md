@@ -5,6 +5,17 @@ root `toctree` directive."
 hellhound ©
 ===========
 
+```python
+def main():
+    print("Hi, my name is Jean-Pierre Chauvel and I'm a Software Engineer and Pythonista.")
+
+    print("This blog is dedicated to tech stuff more specifically: Python related stuff.")
+
+
+if __name__ == "__main__":
+    main()
+```
+
 ```{eval-rst}
 
 .. toctree::
@@ -13,6 +24,5 @@ hellhound ©
    :caption: Contents
 
    articles/hello-world.md
-   _tags/tagsindex.md
 
 ```
