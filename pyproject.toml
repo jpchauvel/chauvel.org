@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "chauvel-org"
+version = "0.1.0"
+description = "Jean-Pierre Chauvel's Blog"
+authors = ["Jean-Pierre Chauvel <jean.p.chauvel@gmail.com>"]
+license = "CC0"
+readme = "README.md"
+packages = [{include = "chauvel"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+Sphinx = "^7.2.6"
+furo = "^2024.1.29"
+myst-parser = {extras = ["linkify"], version = "^2.0.0"}
+linkify = "^1.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
