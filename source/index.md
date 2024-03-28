@@ -12,6 +12,7 @@ hellhound ©
    :maxdepth: 2
    :caption: Contents
 
-   hello-world.md
+   articles/hello-world.md
+   _tags/tagsindex.md
 
 ```
