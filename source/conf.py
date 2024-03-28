@@ -69,6 +69,8 @@ tags_page_header = ""
 
 tags_index_head = ""
 
+tags_page_title = "Tag"
+
 tags_create_badges = True
 
 tags_badge_colors = {
