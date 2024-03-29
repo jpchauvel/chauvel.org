@@ -1,8 +1,5 @@
 {
-    "origins": [
-        "https://chauvel.org",
-        "https://www.chauvel.org"
-    ],
+    "origins": ["https://giscus.app"],
     "originsRegex": ["http://localhost:[0-9]+"],
     "defaultCommentOrder": "newest"
 }
