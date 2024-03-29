@@ -354,6 +354,9 @@ pyyaml==6.0.1 ; python_version >= "3.9" and python_version < "3.13" \
 requests==2.31.0 ; python_version >= "3.9" and python_version < "3.13" \
     --hash=sha256:58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f \
     --hash=sha256:942c5a758f98d790eaed1a29cb6eefc7ffb0d1cf7af05c3d2791656dbd6ad1e1
+setuptools==69.2.0 ; python_version >= "3.9" and python_version < "3.13" \
+    --hash=sha256:0ff4183f8f42cd8fa3acea16c45205521a4ef28f73c6391d8a25e92893134f2e \
+    --hash=sha256:c21c49fb1042386df081cb5d86759792ab89efca84cf114889191cd09aacc80c
 six==1.16.0 ; python_version >= "3.9" and python_version < "3.13" \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
@@ -363,6 +366,21 @@ snowballstemmer==2.2.0 ; python_version >= "3.9" and python_version < "3.13" \
 soupsieve==2.5 ; python_version >= "3.9" and python_version < "3.13" \
     --hash=sha256:5663d5a7b3bfaeee0bc4372e7fc48f9cff4940b3eec54a6451cc5299f1097690 \
     --hash=sha256:eaa337ff55a1579b6549dc679565eac1e3d000563bcb1c8ab0d0fefbc0c2cdc7
+sphinx-copybutton==0.5.2 ; python_version >= "3.9" and python_version < "3.13" \
+    --hash=sha256:4cf17c82fb9646d1bc9ca92ac280813a3b605d8c421225fd9913154103ee1fbd \
+    --hash=sha256:fb543fd386d917746c9a2c50360c7905b605726b9355cd26e9974857afeae06e
+sphinx-design==0.5.0 ; python_version >= "3.9" and python_version < "3.13" \
+    --hash=sha256:1af1267b4cea2eedd6724614f19dcc88fe2e15aff65d06b2f6252cee9c4f4c1e \
+    --hash=sha256:e8e513acea6f92d15c6de3b34e954458f245b8e761b45b63950f65373352ab00
+sphinx-favicon==1.0.1 ; python_version >= "3.9" and python_version < "3.13" \
+    --hash=sha256:7c93d6b634cb4c9687ceab67a8526f05d3b02679df94e273e51a43282e6b034c \
+    --hash=sha256:df796de32125609c1b4a8964db74270ebf4502089c27cd53f542354dc0b57e8e
+sphinx-sitemap==2.5.1 ; python_version >= "3.9" and python_version < "3.13" \
+    --hash=sha256:0b7bce2835f287687f75584d7695e4eb8efaec028e5e7b36e9f791de3c344686 \
+    --hash=sha256:984bef068bbdbc26cfae209a8b61392e9681abc9191b477cd30da406e3a60ee5
+sphinx-togglebutton==0.3.2 ; python_version >= "3.9" and python_version < "3.13" \
+    --hash=sha256:9647ba7874b7d1e2d43413d8497153a85edc6ac95a3fea9a75ef9c1e08aaae2b \
+    --hash=sha256:ab0c8b366427b01e4c89802d5d078472c427fa6e9d12d521c34fa0442559dc7a
 sphinx==7.2.6 ; python_version >= "3.9" and python_version < "3.13" \
     --hash=sha256:1e09160a40b956dc623c910118fa636da93bd3ca0b9876a7b3df90f07d691560 \
     --hash=sha256:9a5160e1ea90688d5963ba09a2dcd8bdd526620edbb65c328728f1b2228d5ab5
@@ -384,6 +402,9 @@ sphinxcontrib-qthelp==1.0.7 ; python_version >= "3.9" and python_version < "3.13
 sphinxcontrib-serializinghtml==1.1.10 ; python_version >= "3.9" and python_version < "3.13" \
     --hash=sha256:326369b8df80a7d2d8d7f99aa5ac577f51ea51556ed974e7716cfd4fca3f6cb7 \
     --hash=sha256:93f3f5dc458b91b192fe10c397e324f262cf163d79f3282c158e8436a2c4511f
+sphinxcontrib-youtube==1.4.1 ; python_version >= "3.9" and python_version < "3.13" \
+    --hash=sha256:de9cb454f066d580a1e7ad64efae7dd9e12c1b1567a31faa330b1aeaeed40460 \
+    --hash=sha256:eb7871c8af47fd2b5c9727615354b7f95bce554be8be45b9fa8e5bc022f88059
 typing-extensions==4.10.0 ; python_version >= "3.9" and python_version < "3.13" \
     --hash=sha256:69b1a937c3a517342112fb4c6df7e72fc39a38e7891a5730ed4985b5214b5475 \
     --hash=sha256:b0abd7c89e8fb96f98db18d86106ff1d90ab692004eb746cf6eda2682f91b3cb
@@ -423,6 +444,9 @@ watchdog==4.0.0 ; python_version >= "3.9" and python_version < "3.13" \
     --hash=sha256:eed82cdf79cd7f0232e2fdc1ad05b06a5e102a43e331f7d041e5f0e0a34a51c4 \
     --hash=sha256:f970663fa4f7e80401a7b0cbeec00fa801bf0287d93d48368fc3e6fa32716245 \
     --hash=sha256:f9b2fdca47dc855516b2d66eef3c39f2672cbf7e7a42e7e67ad2cbfcd6ba107d
+wheel==0.43.0 ; python_version >= "3.9" and python_version < "3.13" \
+    --hash=sha256:465ef92c69fa5c5da2d1cf8ac40559a8c940886afcef87dcf14b9470862f1d85 \
+    --hash=sha256:55c570405f142630c6b9f72fe09d9b67cf1477fcf543ae5b8dcb1f5b7377da81
 zipp==3.18.1 ; python_version >= "3.9" and python_version < "3.10" \
     --hash=sha256:206f5a15f2af3dbaee80769fb7dc6f249695e940acca08dfb2a4769fe61e538b \
     --hash=sha256:2884ed22e7d8961de1c9a05142eb69a247f120291bc0206a00a7642f09b5b715

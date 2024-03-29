@@ -16,13 +16,25 @@ if __name__ == "__main__":
     main()
 ```
 
+Recent posts:
+
+```{postlist} 5
+---
+date: "%A, %B %d, %Y"
+format: "{title} by {author} on {date}"
+list-style: circle
+excerpts:
+sort:
+expand: Read more ...
+---
+```
+
 ```{eval-rst}
 
 .. toctree::
-   :titlesonly:
-   :maxdepth: 2
-   :caption: Contents
+   :hidden:
 
-   articles/hello-world.md
+   about.md
+   blog.md
 
 ```
