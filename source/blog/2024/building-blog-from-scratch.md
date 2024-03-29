@@ -20,7 +20,7 @@ Let's run through the steps to create your blog's scaffolding and content, all w
 First, verify that your environment has Python and `pip` installed. Then, proceed with installing Sphinx, Ablog, and the PyData Sphinx Theme:
 
 ```bash
-pip install sphinx ablog sphinx_pydata_theme
+pip install sphinx ablog sphinx-pydata-theme
 ```
 
 ### Step 2: Start Your Blog with Ablog
@@ -58,7 +58,7 @@ html_theme_options = {
 blog_baseurl = "https://[github-username].github.io/[repository-name]/"
 blog_title = "My Pythonista Blog"
 blog_authors = {
-    "Your Name": (None, None),
+    "Your Nickname": ("Your Name", None),
 }
 
 # For generating a feed
