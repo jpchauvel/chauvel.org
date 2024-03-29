@@ -91,7 +91,7 @@ html_theme_options = {
     "icon_links": [
         {
             "name": "Twitter",
-            "url": "https://twitter.com/jpchauvel",
+            "url": "https://twitter.com/hellhoundorf",
             "icon": "fa-brands fa-twitter",
         },
         {
