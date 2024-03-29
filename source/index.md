@@ -9,14 +9,14 @@ hellhound ©
 def main():
     print("Hi, my name is Jean-Pierre Chauvel and I'm a Software Engineer and Pythonista.")
 
-    print("This blog is dedicated to tech stuff more specifically: Python related stuff.")
+    print("This blog is dedicated to tech stuff, more specifically: Python related stuff.")
 
 
 if __name__ == "__main__":
     main()
 ```
 
-Recent posts:
+## Recent posts:
 
 ```{postlist} 5
 ---
