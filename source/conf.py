@@ -80,7 +80,7 @@ blog_authors = {
 
 # -- Options for HTML output -------------------------------------------------
 
-html_title = "hellhound ©"
+html_title = ""
 html_theme = "pydata_sphinx_theme"
 html_logo = "_static/hellhound.gif"
 html_favicon = "_static/favicon-48x48.gif"
