@@ -18,7 +18,7 @@ sys.path.append(str(Path(".").resolve()))
 # -- Project information -----------------------------------------------------
 
 project = "hellhound ©"
-copyright = "2024, Jean-Pierre Chauvel ©"
+copyright = "2024, Jean-Pierre Chauvel"
 author = "Jean-Pierre Chauvel"
 
 # -- General configuration ---------------------------------------------------
@@ -123,7 +123,7 @@ html_sidebars = {
         "ablog/tagcloud.html",
         "ablog/archives.html"
     ],
-    "blog/*": [
+    "blog/**": [
         "ablog/postcard.html",
         "ablog/recentposts.html",
         "ablog/archives.html"
