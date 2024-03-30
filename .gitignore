@@ -1,4 +1,6 @@
-__pycache__
 .DS_Store
+Thumbs.db
+__pycache__
 build
+_website
 .doctrees

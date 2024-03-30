@@ -3,6 +3,9 @@
         "https://chauvel.org",
         "https://www.chauvel.org"
     ],
-    "originsRegex": ["http://localhost:[0-9]+"],
+    "originsRegex": [
+        "http://localhost:[0-9]+",
+        "http://127.0.0.1:[0-9]+"
+    ],
     "defaultCommentOrder": "newest"
 }

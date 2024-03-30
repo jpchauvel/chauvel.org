@@ -9,9 +9,6 @@ https://www.sphinx-doc.org/en/master/usage/configuration.html
 import os
 import sys
 from pathlib import Path
-from typing import Any, Dict
-
-from sphinx.application import Sphinx
 
 sys.path.append(str(Path(".").resolve()))
 
@@ -47,7 +44,19 @@ templates_path = ["_templates"]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"]
+exclude_patterns = [
+    "_website",
+    "build",
+    "Thumbs.db",
+    ".DS_Store",
+    "__pychache__",
+    "README.md",
+    "LICENSE.md",
+    "giscus.json",
+    "poetry.lock",
+    "pyproject.toml",
+    "requirements.txt",
+]
 
 # -- Sitemap -----------------------------------------------------------------
 
@@ -150,48 +159,7 @@ html_static_path = ["_static"]
 todo_include_todos = True
 
 
-# -- Options for autosummary/autodoc output ------------------------------------
+# -- Options for autosummary/autodoc output -----------------------------------
 autosummary_generate = True
 autodoc_typehints = "description"
 autodoc_member_order = "groupwise"
-
-# -- application setup -------------------------------------------------------
-
-
-def setup_to_main(
-    app: Sphinx, pagename: str, templatename: str, context, doctree
-) -> None:
-    """Add a function that jinja can access for returning an "edit this page" link pointing to `main`."""
-
-    def to_main(link: str) -> str:
-        """Transform "edit on github" links and make sure they always point to the main branch.
-
-        Args:
-            link: the link to the github edit interface
-
-        Returns:
-            the link to the tip of the main branch for the same file
-        """
-        links = link.split("/")
-        idx = links.index("edit")
-        return (
-            "/".join(links[: idx + 1]) + "/main/" + "/".join(links[idx + 2:])
-        )
-
-    context["to_main"] = to_main
-
-
-def setup(app: Sphinx) -> Dict[str, Any]:
-    """Add custom configuration to sphinx app.
-
-    Args:
-        app: the Sphinx application
-    Returns:
-        the 2 parallel parameters set to ``True``.
-    """
-    app.connect("html-page-context", setup_to_main)
-
-    return {
-        "parallel_read_safe": True,
-        "parallel_write_safe": True,
-    }
