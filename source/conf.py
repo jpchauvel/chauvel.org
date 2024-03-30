@@ -106,19 +106,24 @@ html_theme_options = {
             "icon": "fa-brands fa-linkedin",
         },
     ],
-    "use_edit_page_button": True,
+    "use_edit_page_button": False,
     "show_toc_level": 1,
     "navbar_align": "left",
     "navbar_center": ["navbar-nav"],
     "footer_start": ["copyright"],
     "footer_center": ["sphinx-version"],
     "secondary_sidebar_items": {
-        "**/*": ["page-toc", "edit-this-page", "sourcelink"],
+        "**/*": ["page-toc", "sourcelink"],
         "examples/no-sidebar": [],
     },
 }
 
 html_sidebars = {
+    "about": [
+        "ablog/categories.html",
+        "ablog/tagcloud.html",
+        "ablog/archives.html"
+    ],
     "blog": [
         "ablog/categories.html",
         "ablog/tagcloud.html",
