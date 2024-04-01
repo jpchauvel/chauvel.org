@@ -3,7 +3,7 @@ blogpost: true
 date: Mar 29, 2024
 author: Jean-Pierre Chauvel
 location: Lima, Perú
-category: Hello World
+category: Blog
 tags: python, ablog, sphinx, giscus, github-pages, github-actions
 language: English
 ---

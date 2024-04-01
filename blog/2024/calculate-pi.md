@@ -3,7 +3,7 @@ blogpost: true
 date: Mar 29, 2024
 author: Jean-Pierre Chauvel
 location: Lima, Perú
-category: Hello World
+category: Python
 tags: python, numba
 language: English
 ---
