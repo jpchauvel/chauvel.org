@@ -84,7 +84,7 @@ language = "en"
 
 blog_path = "blog"
 blog_authors = {
-    "Jean-Pierre": ("Jean-Pierre Chauvel", "https://github.com/jpchauvel"),
+    "hellhound": ("Jean-Pierre Chauvel", "https://github.com/jpchauvel"),
 }
 
 # -- Options for HTML output -------------------------------------------------

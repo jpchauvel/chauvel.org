@@ -1,7 +1,7 @@
 ---
 blogpost: true
 date: Mar 29, 2024
-author: Jean-Pierre Chauvel
+author: hellhound
 location: Lima, Perú
 category: Blog
 tags: python, ablog, sphinx, giscus, github-pages, github-actions
