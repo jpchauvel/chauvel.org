@@ -6,7 +6,6 @@ https://www.sphinx-doc.org/en/master/usage/configuration.html
 """
 
 # -- Path setup --------------------------------------------------------------
-import os
 import sys
 from pathlib import Path
 
@@ -56,16 +55,6 @@ exclude_patterns = [
     "pyproject.toml",
     "requirements.txt",
 ]
-
-# -- Sitemap -----------------------------------------------------------------
-
-# ReadTheDocs has its own way of generating sitemaps, etc.
-if not os.environ.get("READTHEDOCS"):
-    extensions += ["sphinx_sitemap"]
-
-    html_baseurl = os.environ.get("SITEMAP_URL_BASE", "http://127.0.0.1:8000/")
-    sitemap_locales = [None]
-    sitemap_url_scheme = "{link}"
 
 # -- MyST options ------------------------------------------------------------
 

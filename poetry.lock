@@ -1687,20 +1687,6 @@ theme-rtd = ["sphinx-rtd-theme (>=1.0,<2.0)"]
 theme-sbt = ["sphinx-book-theme (>=1.0,<2.0)"]
 
 [[package]]
-name = "sphinx-sitemap"
-version = "2.5.1"
-description = "Sitemap generator for Sphinx"
-optional = false
-python-versions = "*"
-files = [
-    {file = "sphinx-sitemap-2.5.1.tar.gz", hash = "sha256:984bef068bbdbc26cfae209a8b61392e9681abc9191b477cd30da406e3a60ee5"},
-    {file = "sphinx_sitemap-2.5.1-py3-none-any.whl", hash = "sha256:0b7bce2835f287687f75584d7695e4eb8efaec028e5e7b36e9f791de3c344686"},
-]
-
-[package.dependencies]
-sphinx = ">=1.2"
-
-[[package]]
 name = "sphinx-togglebutton"
 version = "0.3.2"
 description = "Toggle page content and collapse admonitions in Sphinx."
@@ -2075,4 +2061,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "60c5d940b7ed82f7b9b48ed3a51cc1048ee448d04eaacf16944af1b83d8fbb28"
+content-hash = "506fe657c031819be930a0c70728f2859b5d34c8aa816689135ba7c2c9d8b2e8"
