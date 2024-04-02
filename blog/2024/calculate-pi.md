@@ -43,9 +43,3 @@ if __name__ = "__main__":
 ```
 
 **Note:** This calculation method is described in this Wikipedia article https://en.wikipedia.org/wiki/Approximations_of_π#Summing_a_circle's_area.
-
-```{raw} html
----
-file: ../../_templates/giscus.html
----
-```

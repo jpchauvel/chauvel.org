@@ -77,9 +77,3 @@ silicon chip can have on the world.
 For those interested in exploring the depths of computing history, the
 story of the 6502 offers an inspiring glimpse into an era where creativity and
 innovation paved the way for the technological marvels of the future.
-
-```{raw} html
----
-file: ../../_templates/giscus.html
----
-```

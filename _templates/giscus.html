@@ -1,3 +1,4 @@
+{% if pagename.startswith("blog") and pagename.split("/") | length > 1 %}
 <script src="https://giscus.app/client.js"
         data-repo="jpchauvel/chauvel.org"
         data-repo-id="R_kgDOLmkQMw"
@@ -13,3 +14,4 @@
         crossorigin="anonymous"
         async>
 </script>
+{% endif %}

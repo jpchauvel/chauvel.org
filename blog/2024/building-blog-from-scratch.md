@@ -155,9 +155,3 @@ jobs:
 ```
 
 This workflow will build and deploy your blog to GitHub Pages whenever you push to the main branch.
-
-```{raw} html
----
-file: ../../_templates/giscus.html
----
-```

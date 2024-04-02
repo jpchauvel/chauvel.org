@@ -113,6 +113,7 @@ html_theme_options = {
         "**/*": ["page-toc", "sourcelink"],
         "examples/no-sidebar": [],
     },
+    "article_footer_items": ["giscus.html"],
 }
 
 html_sidebars = {
