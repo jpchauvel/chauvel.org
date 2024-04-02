@@ -372,9 +372,6 @@ sphinx-copybutton==0.5.2 ; python_version >= "3.9" and python_version < "3.13" \
 sphinx-design==0.5.0 ; python_version >= "3.9" and python_version < "3.13" \
     --hash=sha256:1af1267b4cea2eedd6724614f19dcc88fe2e15aff65d06b2f6252cee9c4f4c1e \
     --hash=sha256:e8e513acea6f92d15c6de3b34e954458f245b8e761b45b63950f65373352ab00
-sphinx-favicon==1.0.1 ; python_version >= "3.9" and python_version < "3.13" \
-    --hash=sha256:7c93d6b634cb4c9687ceab67a8526f05d3b02679df94e273e51a43282e6b034c \
-    --hash=sha256:df796de32125609c1b4a8964db74270ebf4502089c27cd53f542354dc0b57e8e
 sphinx-sitemap==2.5.1 ; python_version >= "3.9" and python_version < "3.13" \
     --hash=sha256:0b7bce2835f287687f75584d7695e4eb8efaec028e5e7b36e9f791de3c344686 \
     --hash=sha256:984bef068bbdbc26cfae209a8b61392e9681abc9191b477cd30da406e3a60ee5

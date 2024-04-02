@@ -35,7 +35,6 @@ extensions = [
     "ablog",
     "sphinxcontrib.youtube",
     "sphinx_togglebutton",
-    "sphinx_favicon",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
