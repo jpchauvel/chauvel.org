@@ -13,11 +13,13 @@ Then install all the necessary packages (make sure to change to the root directo
 poetry install
 ```
 
-And then, you can build the html files of the blog by running the following commands:
+And then, you can build the html files of the blog by running the following command:
 
 ```sh
-poetry shell
-make html
+poetry run ablog build
 ```
 
-The built html files would be placed in the `build/html` subdirectory.
+Then you can serve the files locally using this command:
+```sh
+poetry run ablog serve
+```
