@@ -93,14 +93,24 @@ html_theme_options = {
             "icon": "fa-brands fa-twitter",
         },
         {
-            "name": "GitHub",
-            "url": "https://github.com/jpchauvel",
-            "icon": "fa-brands fa-github",
+            "name": "WhatsApp",
+            "url": "https://wa.me/+51989804478",
+            "icon": "fa-brands fa-whatsapp",
         },
         {
             "name": "LinkedIn",
             "url": "https://linkedin.com/in/jpchauvel",
             "icon": "fa-brands fa-linkedin",
+        },
+        {
+            "name": "GitHub",
+            "url": "https://github.com/jpchauvel",
+            "icon": "fa-brands fa-github",
+        },
+        {
+            "name": "Python Perú",
+            "url": "https://blog.python.pe",
+            "icon": "fa-brands fa-python",
         },
     ],
     "use_edit_page_button": False,
