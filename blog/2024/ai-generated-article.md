@@ -2,8 +2,10 @@
 blogpost: true
 date: 01 Apr, 2024
 author: hellhound
+location: Lima, Perú
 category: AI-Generated Article
 tags: 8-bit-guy, ai-generated
+language: English
 ---
 
 # The Heart of the 1980s Computing Revolution: The MOS 6502 Microprocessor
