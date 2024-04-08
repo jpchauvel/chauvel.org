@@ -38,6 +38,7 @@ extensions = [
     "sphinxcontrib.youtube",
     "sphinx_togglebutton",
     "sphinx_sitemap",
+    "sphinx_favicon",
     "jupyterlite_sphinx",
 ]
 
@@ -102,7 +103,7 @@ blog_authors = {
 html_title = ""
 html_theme = "pydata_sphinx_theme"
 html_logo = "_static/logo/hellhound.gif"
-html_favicon = "_static/favicon/favicon-48x48.gif"
+# html_favicon = "_static/favicon/favicon-48x48.gif"
 html_sourcelink_suffix = ""
 html_last_updated_fmt = ""  # to reveal the build date in the pages meta
 
@@ -190,6 +191,17 @@ autodoc_member_order = "groupwise"
 html_baseurl = "https://www.chauvel.org/"
 sitemap_url_scheme = "{link}"
 sitemap_locales = [None]
+
+# -- Options for favicon ------------------------------------------------------
+favicons = [
+    {"href": "favicon/favicon-16x16.gif"},
+    {"href": "favicon/favicon-32x32.gif"},
+    {"href": "favicon/favicon-48x48.gif"},
+    {
+        "rel": "apple-touch-icon",
+        "href": "favicon/favicon-180x180.gif"
+    }
+]
 
 # -- Custom Sphinx app setup to hook after the build is finished --------------
 
