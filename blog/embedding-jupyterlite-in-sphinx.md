@@ -10,6 +10,8 @@ language: English
 
 # Exploring JupyterLite and Embedding it in Your Sphinx Blog
 
+![JupyterLite](/_static/images/jupyterlite.png){ height=300px align=center }
+
 ## Introduction
 
 As a developer and data enthusiast, I always find myself exploring new
