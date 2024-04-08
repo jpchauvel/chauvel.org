@@ -3,7 +3,7 @@ name: blog
 on:
   push:
     branches:
-      - master
+      - main
 
 permissions:
   contents: write
@@ -24,7 +24,7 @@ jobs:
           ablog build
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
