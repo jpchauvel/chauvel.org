@@ -34,6 +34,7 @@ extensions = [
     "ablog",
     "sphinxcontrib.youtube",
     "sphinx_togglebutton",
+    "sphinx_sitemap",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -162,3 +163,8 @@ todo_include_todos = True
 autosummary_generate = True
 autodoc_typehints = "description"
 autodoc_member_order = "groupwise"
+
+# -- Options for sitemap ------------------------------------------------------
+html_baseurl = "https://www.chauvel.org/"
+sitemap_url_scheme = "{link}"
+sitemap_locales = [None]
