@@ -6,8 +6,11 @@ https://www.sphinx-doc.org/en/master/usage/configuration.html
 """
 
 # -- Path setup --------------------------------------------------------------
+import os
+import shutil
 import sys
 from pathlib import Path
+from ablog.commands import find_confdir, read_conf
 
 sys.path.append(str(Path(".").resolve()))
 
@@ -35,6 +38,7 @@ extensions = [
     "sphinxcontrib.youtube",
     "sphinx_togglebutton",
     "sphinx_sitemap",
+    "jupyterlite_sphinx",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -55,12 +59,29 @@ exclude_patterns = [
     "poetry.lock",
     "pyproject.toml",
     "requirements.txt",
+    "environment.yaml",
+    "notebooks",
 ]
 
 # -- MyST options ------------------------------------------------------------
 
 # This allows us to use ::: to denote directives, useful for admonitions
-myst_enable_extensions = ["colon_fence", "linkify", "substitution"]
+myst_enable_extensions = [
+    "amsmath",
+    "attrs_inline",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    "linkify",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
+]
 myst_heading_anchors = 2
 myst_substitutions = {"rtd": "[Read the Docs](https://readthedocs.org/)"}
 
@@ -80,8 +101,8 @@ blog_authors = {
 
 html_title = ""
 html_theme = "pydata_sphinx_theme"
-html_logo = "_static/hellhound.gif"
-html_favicon = "_static/favicon-48x48.gif"
+html_logo = "_static/logo/hellhound.gif"
+html_favicon = "_static/favicon/favicon-48x48.gif"
 html_sourcelink_suffix = ""
 html_last_updated_fmt = ""  # to reveal the build date in the pages meta
 
@@ -168,3 +189,32 @@ autodoc_member_order = "groupwise"
 html_baseurl = "https://www.chauvel.org/"
 sitemap_url_scheme = "{link}"
 sitemap_locales = [None]
+
+# -- Custom Sphinx app setup to hook after the build is finished --------------
+
+
+def setup(app):
+    app.connect('builder-inited', build_inited_handler)
+    app.connect('build-finished', build_finsihed_handler)
+
+
+def build_inited_handler(app):
+    confdir = find_confdir()
+    conf = read_conf(confdir)
+    website = os.path.join(
+        confdir, getattr(conf, "ablog_builddir", "_website")
+    )
+    blog = os.path.join(website, getattr(conf, "ablog_path", "blog"))
+    lite = os.path.join(blog, "lite")
+    shutil.rmtree(lite, ignore_errors=True)
+
+
+def build_finsihed_handler(app, exception):
+    confdir = find_confdir()
+    conf = read_conf(confdir)
+    website = os.path.join(
+        confdir, getattr(conf, "ablog_builddir", "_website")
+    )
+    blog = os.path.join(website, getattr(conf, "ablog_path", "blog"))
+    lite = os.path.join(website, "lite")
+    shutil.copytree(lite, os.path.join(blog, "lite"))

@@ -19,6 +19,8 @@ sphinx-copybutton = "^0.5.2"
 sphinx-togglebutton = "^0.3.2"
 sphinxcontrib-youtube = "^1.4.1"
 sphinx-sitemap = "^2.5.1"
+jupyterlite-sphinx = "^0.13.1"
+jupyterlite-pyodide-kernel = "0.2.3"
 
 
 [tool.poetry.group.dev.dependencies]
