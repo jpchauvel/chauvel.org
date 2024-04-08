@@ -1,6 +1,9 @@
-[//]: # "Hellhound's Blog master file, created by sphinx-quickstart on Wed Mar 27 20:07:35 2024.
-You can adapt this file completely to your liking, but it should at least contain the
-root `toctree` directive."
+---
+myst:
+  html_meta:
+   "description": "Hi, my name is Jean-Pierre Chauvel and I'm a Software Engineer and Pythonista. This blog is dedicated to tech stuff, more specifically: Python related stuff."
+   "keywords": "python, peru, programming, blog, development, code, language, artificial intelligence, ai, frameworks"
+---
 
 hellhound ©
 ===========
