@@ -116,7 +116,7 @@ prompt color:
    plt.show()
 ```
 
-## Try it out yourself!
+## Try it out!
 
 Enter some Python code and then press Shift + Enter.
 
