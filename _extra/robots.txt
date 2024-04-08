@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /lite/
+
+User-agent: *
+Disallow: /blog/lite/
+
+Sitemap: https://chauvel.org/sitemap.xml
+Sitemap: https://www.chauvel.org/sitemap.xml

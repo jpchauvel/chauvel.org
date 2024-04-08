@@ -178,6 +178,7 @@ html_context = {
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
 todo_include_todos = True
+html_extra_path = ["_extra"]
 
 
 # -- Options for autosummary/autodoc output -----------------------------------
