@@ -98,6 +98,14 @@ blog_path = "blog"
 blog_authors = {
     "hellhound": ("Jean-Pierre Chauvel", "https://github.com/jpchauvel"),
 }
+blog_baseurl = "https://www.chauvel.org"
+blog_feed_fulltext = True
+blog_feed_subtitle = (
+    "This blog is dedicated to tech stuff,"
+    " more specifically: Python related stuff."
+)
+fontawesome_included = True
+post_redirect_refresh = 1
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -151,6 +159,11 @@ html_theme_options = {
             "name": "Python Perú",
             "url": "https://blog.python.pe",
             "icon": "fa-brands fa-python",
+        },
+        {
+            "name": "Blog RSS feed",
+            "url": "https://www.chauvel.org/blog/atom.xml",
+            "icon": "fa-solid fa-rss",
         },
     ],
     "use_edit_page_button": False,
