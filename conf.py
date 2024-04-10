@@ -94,6 +94,7 @@ language = "en"
 
 # -- Ablog options -----------------------------------------------------------
 
+blog_title = "hellhound ©"
 blog_path = "blog"
 blog_authors = {
     "hellhound": ("Jean-Pierre Chauvel", "https://github.com/jpchauvel"),
