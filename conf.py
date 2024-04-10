@@ -10,6 +10,7 @@ import os
 import shutil
 import sys
 from pathlib import Path
+
 from ablog.commands import find_confdir, read_conf
 
 sys.path.append(str(Path(".").resolve()))
@@ -30,9 +31,6 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx_design",
     "sphinx_copybutton",
-    # custom extentions
-    "_extensions.gallery_directive",
-    # For extension examples and demos
     "myst_parser",
     "ablog",
     "sphinxcontrib.youtube",
@@ -40,6 +38,9 @@ extensions = [
     "sphinx_sitemap",
     "sphinx_favicon",
     "jupyterlite_sphinx",
+    # custom extentions
+    "_extensions.gallery_directive",
+    "_extensions.gravatar",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -113,7 +114,12 @@ html_theme_options = {
         {
             "name": "Twitter",
             "url": "https://twitter.com/hellhoundorf",
-            "icon": "fa-brands fa-twitter",
+            "icon": "fa-brands fa-x-twitter",
+        },
+        {
+            "name": "Instagram",
+            "url": "https://www.instagram.com/hellhoundorf",
+            "icon": "fa-brands fa-instagram",
         },
         {
             "name": "YouTube",
@@ -136,6 +142,12 @@ html_theme_options = {
             "icon": "fa-brands fa-github",
         },
         {
+            "name": "Stack Overflow",
+            "url":
+            "https://stackoverflow.com/users/434423/jean-pierre-chauvel",
+            "icon": "fa-brands fa-stack-overflow",
+        },
+        {
             "name": "Python Perú",
             "url": "https://blog.python.pe",
             "icon": "fa-brands fa-python",
@@ -155,20 +167,16 @@ html_theme_options = {
 }
 
 html_sidebars = {
-    "about": [
-        "ablog/categories.html",
-        "ablog/tagcloud.html",
-        "ablog/archives.html"
-    ],
+    "about": ["about.html"],
     "blog": [
         "ablog/categories.html",
         "ablog/tagcloud.html",
-        "ablog/archives.html"
+        "ablog/archives.html",
     ],
     "blog/**": [
         "ablog/postcard.html",
         "ablog/recentposts.html",
-        "ablog/archives.html"
+        "ablog/archives.html",
     ],
 }
 
@@ -185,6 +193,10 @@ html_context = {
 html_static_path = ["_static"]
 todo_include_todos = True
 html_extra_path = ["_extra"]
+html_context = {
+    "email": "jean.pierre@chauvel.org",
+}
+custom_css = "css/custom.css"
 
 
 # -- Options for autosummary/autodoc output -----------------------------------
@@ -202,18 +214,16 @@ favicons = [
     {"href": "favicon/favicon-16x16.gif"},
     {"href": "favicon/favicon-32x32.gif"},
     {"href": "favicon/favicon-48x48.gif"},
-    {
-        "rel": "apple-touch-icon",
-        "href": "favicon/favicon-180x180.gif"
-    }
+    {"rel": "apple-touch-icon", "href": "favicon/favicon-180x180.gif"},
 ]
 
 # -- Custom Sphinx app setup to hook after the build is finished --------------
 
 
 def setup(app):
-    app.connect('builder-inited', build_inited_handler)
-    app.connect('build-finished', build_finsihed_handler)
+    app.connect("builder-inited", build_inited_handler)
+    app.connect("build-finished", build_finsihed_handler)
+    app.add_css_file(custom_css)
 
 
 def build_inited_handler(app):

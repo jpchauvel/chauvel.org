@@ -1,0 +1,22 @@
+div.profile-pic {
+    margin-top: 1em;
+}
+
+div.profile-pic img {
+    margin: 0 auto;
+    display: block;
+}
+
+.bio-info {
+    margin: 1em auto;
+    max-width: 220px;
+}
+
+.name {
+    font-size: 1.5em;
+}
+
+.focusareas {
+    font-size: .9em;
+    font-weight: bold;
+}

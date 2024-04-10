@@ -286,6 +286,9 @@ jupyterlite-pyodide-kernel==0.2.3 ; python_version >= "3.9" and python_version <
 jupyterlite-sphinx==0.13.1 ; python_version >= "3.9" and python_version < "3.13" \
     --hash=sha256:3b166717e914060be8401a2c0d86f6c22d8f1f0c4427783f586d6f7ee6806e89 \
     --hash=sha256:6a34e7f5d69155e0b2208de79cb0be2e913085047d784353cfa4f112e1872169
+libgravatar==1.0.4 ; python_version >= "3.9" and python_version < "3.13" \
+    --hash=sha256:05cf4f8dfefe995d09078cd3d747c8f04dcf17d6004fc7bb542049a55f2238d9 \
+    --hash=sha256:f967619b38914e0f941e53387881005e43929814571103f6bbfa2afd75045e20
 linkify-it-py==2.0.3 ; python_version >= "3.9" and python_version < "3.13" \
     --hash=sha256:68cda27e162e9215c17d786649d1da0021a451bdc436ef9e0fa0ba5234b9b048 \
     --hash=sha256:6bcbc417b0ac14323382aef5c5192c0075bf8a9d6b41820a2b66371eac6b6d79

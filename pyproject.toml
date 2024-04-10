@@ -22,14 +22,16 @@ sphinx-sitemap = "^2.5.1"
 jupyterlite-sphinx = "^0.13.1"
 jupyterlite-pyodide-kernel = "<3.0.0"
 sphinx-favicon = "^1.0.1"
+libgravatar = "^1.0.4"
 
 
 [tool.poetry.group.dev.dependencies]
 poetry-plugin-export = "^1.7.1"
 black = "^24.3.0"
+isort = "^5.13.2"
 
 [tool.black]
-line-length = 80
+line-length = 79
 
 [build-system]
 requires = ["poetry-core"]
