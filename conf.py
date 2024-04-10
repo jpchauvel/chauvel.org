@@ -116,6 +116,11 @@ html_theme_options = {
             "icon": "fa-brands fa-twitter",
         },
         {
+            "name": "YouTube",
+            "url": "https://youtube.com/@hellhoundorf",
+            "icon": "fa-brands fa-youtube",
+        },
+        {
             "name": "WhatsApp",
             "url": "https://wa.me/+51989804478",
             "icon": "fa-brands fa-whatsapp",
