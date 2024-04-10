@@ -3,6 +3,7 @@ div.profile-pic {
 }
 
 div.profile-pic img {
+    border-radius: 200px;
     margin: 0 auto;
     display: block;
 }
