@@ -13,12 +13,12 @@ language: English
 ![Gravatar](/_static/images/gravatar.png){ align=center width=200px }
 
 I was having this idea of embedding my gravatar pic along the kind-of-corny text
-that is located in the [about](../about.md) page. So, I decided to create this
+that is located in the [about](../about.md) page. So, I decided to create a
 Shpinx directive that allowed me to insert/embed into a Markdown file my
 Gravatar pic.
 
 I immediately dismissed the idea because it was better to do it using javascript
-alone in a Sphinx template (as a matter of fact that the gravatar API is pretty
+alone in a Sphinx template (as a matter of fact, the gravatar API is pretty
 simple, you just have to append an SHA-256 hash of your email address linked to
 your Gravatar account to this URL https://gravatar.com/avatar/{your_hash_here}).
 
