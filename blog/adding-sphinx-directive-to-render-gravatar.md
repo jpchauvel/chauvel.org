@@ -19,7 +19,7 @@ Gravatar pic.
 
 I immediately dismissed the idea because it was better to do it using javascript
 alone in a Sphinx template (as a matter of fact, the gravatar API is pretty
-simple, you just have to append an SHA-256 hash of your email address linked to
+simple, you just have to append a SHA-256 hash of your email address linked to
 your Gravatar account to this URL https://gravatar.com/avatar/{your_hash_here}).
 
 The directive is called `{gravatar}`.
