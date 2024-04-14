@@ -908,6 +908,9 @@ sphinxcontrib-serializinghtml==1.1.10 ; python_version >= "3.9" and python_versi
 sphinxcontrib-youtube==1.4.1 ; python_version >= "3.9" and python_version < "3.13" \
     --hash=sha256:de9cb454f066d580a1e7ad64efae7dd9e12c1b1567a31faa330b1aeaeed40460 \
     --hash=sha256:eb7871c8af47fd2b5c9727615354b7f95bce554be8be45b9fa8e5bc022f88059
+sphinxext-opengraph==0.9.1 ; python_version >= "3.9" and python_version < "3.13" \
+    --hash=sha256:b3b230cc6a5b5189139df937f0d9c7b23c7c204493b22646273687969dcb760e \
+    --hash=sha256:dd2868a1e7c9497977fbbf44cc0844a42af39ca65fe1bb0272518af225d06fc5
 terminado==0.18.1 ; python_version >= "3.9" and python_version < "3.13" \
     --hash=sha256:a4468e1b37bb318f8a86514f65814e1afc977cf29b3992a4500d9dd305dcceb0 \
     --hash=sha256:de09f2c4b85de4765f7714688fff57d3e75bad1f909b589fde880460c753fd2e
