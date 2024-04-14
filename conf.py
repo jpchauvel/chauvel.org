@@ -37,6 +37,7 @@ extensions = [
     "sphinx_togglebutton",
     "sphinx_sitemap",
     "sphinx_favicon",
+    "sphinxext.opengraph",
     "jupyterlite_sphinx",
     # custom extentions
     "_extensions.gallery_directive",
@@ -230,6 +231,15 @@ favicons = [
     {"href": "favicon/favicon-48x48.gif"},
     {"rel": "apple-touch-icon", "href": "favicon/favicon-180x180.gif"},
 ]
+
+# -- Options for OpenGraph ----------------------------------------------------
+
+ogp_site_url = "https://www.chauvel.org"
+ogp_enable_meta_description = True
+ogp_social_cards = {
+    "line_color": "#4078c0",
+    "image": "_static/logo/hellhound-profile.gif",
+}
 
 # -- Custom Sphinx app setup to hook after the build is finished --------------
 

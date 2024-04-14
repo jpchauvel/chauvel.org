@@ -2924,6 +2924,20 @@ doc = ["pydata-sphinx-theme", "sphinx-copybutton", "sphinx-design"]
 test = ["beautifulsoup4", "pytest", "pytest-cov", "pytest-regressions"]
 
 [[package]]
+name = "sphinxext-opengraph"
+version = "0.9.1"
+description = "Sphinx Extension to enable OGP support"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "sphinxext-opengraph-0.9.1.tar.gz", hash = "sha256:dd2868a1e7c9497977fbbf44cc0844a42af39ca65fe1bb0272518af225d06fc5"},
+    {file = "sphinxext_opengraph-0.9.1-py3-none-any.whl", hash = "sha256:b3b230cc6a5b5189139df937f0d9c7b23c7c204493b22646273687969dcb760e"},
+]
+
+[package.dependencies]
+sphinx = ">=4.0"
+
+[[package]]
 name = "terminado"
 version = "0.18.1"
 description = "Tornado websocket backend for the Xterm.js Javascript terminal emulator library."
@@ -3305,4 +3319,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "3a99c9ca67ab2bf5cfa47d3c3c1cdaf48308b4b91c799d04144877d6f9ef4053"
+content-hash = "c9b5ad8964fb44d3a35942dd4384d422f9bc11bda45ce39680c81fb2a2d6868d"

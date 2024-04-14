@@ -23,6 +23,7 @@ jupyterlite-sphinx = "^0.13.1"
 jupyterlite-pyodide-kernel = "<3.0.0"
 sphinx-favicon = "^1.0.1"
 libgravatar = "^1.0.4"
+sphinxext-opengraph = "^0.9.1"
 
 
 [tool.poetry.group.dev.dependencies]
