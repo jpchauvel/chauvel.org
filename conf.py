@@ -236,8 +236,6 @@ favicons = [
 
 ogp_site_url = "https://www.chauvel.org"
 ogp_enable_meta_description = True
-ogp_image = "_static/logo/hellhound-profile.gif"
-ogp_image_alt = "hellhound ©"
 ogp_social_cards = {
     "line_color": "#4078c0",
     "image": "_static/logo/hellhound-profile.gif",
