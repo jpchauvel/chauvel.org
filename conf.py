@@ -159,7 +159,7 @@ html_theme_options = {
         },
         {
             "name": "Python Perú",
-            "url": "https://blog.python.pe",
+            "url": "https://python.pe",
             "icon": "fa-brands fa-python",
         },
         {
