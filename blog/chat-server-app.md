@@ -7,9 +7,9 @@ category: Server
 tags: server, chat, redis, pubsub, websockets, python
 language: English
 ---
-# Creating Your Own Small Scale Server Application Using PubSub Pattern
+# Creating Your Own Small Scale Application Server Using PubSub Pattern
 
-I recently had the idea to develop a small proof-of-concept server application
+I recently had the idea to develop a small proof-of-concept application server
 using the built-in pub/sub functionality of Redis, and decided to get started on
 it.
 
