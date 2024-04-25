@@ -17,7 +17,7 @@ So the first step involved listing my dependencies, and, oh boy, there were
 quite a few for such a small app!
 
 - `fastapi`: The framework I chose to expose the websocket endpoint.
-- `click`: This package was required to capture simple command line options.
+- `typer`: This package was required to capture simple command line options.
 - `websockets`: This one was required to handle websocket communication between
   the server and the clients.
 - `redis.asyncio`: This is basically the same as `redis` but for `asyncio`
@@ -30,35 +30,40 @@ First we need a FastAPI boilerplate code, like so:
 
 ```python
 #!/usr/bin/env python3
+import asyncio
+import json
 import logging
 
-import click
+import redis.asyncio as redis
+import typer
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from redis.asyncio.client import PubSub
+from typing_extensions import Annotated
 
-app = FastAPI()
+app: FastAPI = FastAPI()
 
 global_room = "global_room"
 
 logging.basicConfig(level=logging.INFO)
 
 
-@app.websocket("/chat/{nickname}")
-async def main_chat_handler(websocket: WebSocket, nickname: str):
+@app.websocket(path="/chat/{nickname}")
+async def main_chat_handler(websocket: WebSocket, nickname: str) -> None:
     ...
 
 
-@click.command()
-@click.option("--host", default="0.0.0.0", help="Host to run the server on")
-@click.option("--port", default=8000, help="Port to run the server on")
-@click.option("--redis", default="localhost", help="Redis host")
-def run_server(host, port, redis):
+def run_server(
+    host: Annotated[str, typer.Option()] = "0.0.0.0",
+    port: Annotated[int, typer.Option()] = 8000,
+    redis: Annotated[str, typer.Option()] = "localhost",
+) -> None:
     app.redis = redis
-    uvicorn.run(app, host=host, port=port)
+    uvicorn.run(app=app, host=host, port=port)
 
 
 if __name__ == "__main__":
-    run_server()
+    typer.run(function=run_server)
 ```
 
 This code is quite mouthful by itself, so I'll do my best explaining what it
@@ -81,11 +86,8 @@ Now it's time to define a special helper function that will allow us to get the
 redis client:
 
 ```python
-import redis.asyncio as redis
-
-
-async def get_redis_client(host: str = "localhost"):
-    return await redis.from_url(f"redis://{host}")
+async def get_redis_client(host: str = "localhost") -> redis.Redis:
+    return await redis.from_url(url=f"redis://{host}")
 ```
 
 I will not go into details on how the Redis' pub/sub work. You can see how it's
@@ -125,10 +127,10 @@ async with r.pubsub() as pubsub:
 So for the main handler, the code would look like this:
 
 ```python
-@app.websocket("/chat/{nickname}")
-async def main_chat_handler(websocket: WebSocket, nickname: str):
-    logging.info(f"User {nickname} joined the chat")
-    client = await get_redis_client(app.redis)
+@app.websocket(path="/chat/{nickname}")
+async def main_chat_handler(websocket: WebSocket, nickname: str) -> None:
+    logging.info(msg=f"User {nickname} joined the chat")
+    client: redis.Redis = await get_redis_client(host=app.redis)
 
     try:
         await websocket.accept()
@@ -136,16 +138,16 @@ async def main_chat_handler(websocket: WebSocket, nickname: str):
         async with client.pubsub() as pubsub:
             await pubsub.subscribe(global_room)
 
-            reader_future = asyncio.create_task(
-                chat_reader(pubsub, websocket, nickname)
+            reader_future: asyncio.Task[None] = asyncio.create_task(
+                coro=chat_reader(pubsub, websocket, nickname)
             )
-            publisher_future = asyncio.create_task(
-                chat_publisher(client, websocket, nickname)
+            publisher_future: asyncio.Task[None] = asyncio.create_task(
+                coro=chat_publisher(client, websocket)
             )
             await publisher_future
             await reader_future
     except WebSocketDisconnect:
-        logging.info(f"User {nickname} is disconnecting...")
+        logging.info(msg=f"User {nickname} is disconnecting...")
 ```
 
 As you can see, we first accept the socket connection and then we start the
@@ -170,27 +172,27 @@ received message from the websocket in an infinite loop.
 
 ```python
 async def chat_reader(
-    channel: redis.client.PubSub, websocket: WebSocket, nickname: str
-):
+    channel: PubSub, websocket: WebSocket, nickname: str
+) -> None:
     while True:
-        message = await channel.get_message(ignore_subscribe_messages=True)
+        message: dict = await channel.get_message(
+            ignore_subscribe_messages=True
+        )
         if message is not None:
-            message = message["data"].decode()
-            data = json.loads(message)
+            decoded_message: str = message["data"].decode()
+            data = json.loads(s=decoded_message)
             # Exclude messages sent by the same user
             if data["nickname"] != nickname:
-                await websocket.send_text(message)
+                await websocket.send_text(data=decoded_message)
 ```
 
 ### Publisher
 
 ```python
-async def chat_publisher(
-    client: redis.client.Redis, websocket: WebSocket, nickname: str
-):
+async def chat_publisher(client: redis.Redis, websocket: WebSocket) -> None:
     while True:
-        data = await websocket.receive_text()
-        await client.publish(global_room, data)
+        data: str = await websocket.receive_text()
+        await client.publish(channel=global_room, message=data)
 ```
 
 ## Final Thoughts
