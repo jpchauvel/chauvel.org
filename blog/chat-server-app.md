@@ -86,9 +86,6 @@ Now it's time to define a special helper function that will allow us to get the
 redis client:
 
 ```python
-import redis.asyncio as redis
-
-
 async def get_redis_client(host: str = "localhost") -> redis.Redis:
     return await redis.from_url(url=f"redis://{host}")
 ```
