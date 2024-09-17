@@ -158,6 +158,12 @@ html_theme_options = {
             "icon": "fa-brands fa-stack-overflow",
         },
         {
+            "name": "Fiverr",
+            "url": "https://www.fiverr.com/s/2K0Wmwk",
+            "icon": "https://fiverr-res.cloudinary.com/npm-assets/layout-service/favicon-32x32.8f21439.png",
+            "type": "url",
+        },
+        {
             "name": "Python Perú",
             "url": "https://python.pe",
             "icon": "fa-brands fa-python",
