@@ -1,0 +1,1017 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://www.chauvel.org</id>
+  <title>hellhound ©</title>
+  <updated>2025-02-11T23:34:35.713641+00:00</updated>
+  <link href="https://www.chauvel.org"/>
+  <link href="https://www.chauvel.org/blog/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.6">ABlog</generator>
+  <subtitle>This blog is dedicated to tech stuff, more specifically: Python related stuff.</subtitle>
+  <entry>
+    <id>https://www.chauvel.org/blog/pypy-benchmark/</id>
+    <title>Exploring Python Performance: PyPy vs CPython vs Numba</title>
+    <updated>2024-05-13T00:00:00+00:00</updated>
+    <author>
+      <name>Jean-Pierre Chauvel</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="exploring-python-performance-pypy-vs-cpython-vs-numba"&gt;
+
+&lt;p&gt;Python developers often face the decision of choosing between different
+implementations for their projects, especially when performance is a crucial
+factor. In this blog post, we delve into a comparative benchmarking study
+between PyPy, CPython, and Numba, focusing on calculating Pi value using a
+custom script.&lt;/p&gt;
+&lt;section id="introduction"&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The benchmarking setup involved running the same Python script on PyPy 7.3.16
+with Python 3.10.14, CPython 3.12.3, and Numba 0.59.1 on a Macbook Pro M1 Max
+with 10 cores and 64GB of RAM.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="performance-results"&gt;
+&lt;h2&gt;Performance Results&lt;/h2&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;Repository &lt;a class="github reference external" href="https://github.com/jpchauvel/pypy-test"&gt;jpchauvel/pypy-test&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;section id="pypy-performance"&gt;
+&lt;h3&gt;PyPy Performance&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Pi value obtained: 3.1420208&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Elapsed time: 2.2179 seconds&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PyPy demonstrated decent performance in calculating Pi but was slightly slower
+compared to CPython and Numba.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="cpython-numba-performance"&gt;
+&lt;h3&gt;CPython/Numba Performance&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Pi value obtained: 3.14182408&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Elapsed time: 0.5820 seconds&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;CPython with Numba outperformed PyPy in both accuracy and speed, presenting the
+most efficient solution among the three test cases.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="final-thoughts"&gt;
+&lt;h2&gt;Final Thoughts&lt;/h2&gt;
+&lt;p&gt;While PyPy offers a balance between performance and Python compatibility, its
+execution time in this benchmark was marginally slower than CPython. For tasks
+prioritizing speed, CPython emerges as the preferred choice. Numba, leveraging
+JIT compilation, was noted as a potential contender for performance-critical
+applications.&lt;/p&gt;
+&lt;p&gt;In conclusion, the choice between PyPy, CPython, and Numba depends on the
+specific requirements of the project, with developers considering factors such
+as execution speed, accuracy, and compatibility with Python libraries.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.chauvel.org/blog/pypy-benchmark/"/>
+    <summary>Python developers often face the decision of choosing between different
+implementations for their projects, especially when performance is a crucial
+factor. In this blog post, we delve into a comparative benchmarking study
+between PyPy, CPython, and Numba, focusing on calculating Pi value using a
+custom script.</summary>
+    <category term="cpython" label="cpython"/>
+    <category term="numba" label="numba"/>
+    <category term="pypy" label="pypy"/>
+    <category term="python" label="python"/>
+    <published>2024-05-13T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.chauvel.org/blog/modernizing-vim/</id>
+    <title>Modernizing Vim: Transforming it into a Powerhouse IDE Comparable to VSCode!</title>
+    <updated>2024-04-29T00:00:00+00:00</updated>
+    <author>
+      <name>Jean-Pierre Chauvel</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="modernizing-vim-transforming-it-into-a-powerhouse-ide-comparable-to-vscode"&gt;
+
+&lt;p&gt;&lt;img alt="Python developer" class="align-center" src="https://www.chauvel.org/_images/coc.png" style="height: 300px;" /&gt;
+&lt;img alt="Python developer" class="align-center" src="https://www.chauvel.org/_images/code.gif" style="height: 400px;" /&gt;&lt;/p&gt;
+&lt;p&gt;In the world of code editors, Visual Studio Code (VSCode) has gained immense
+popularity for its rich feature set and seamless developer experience. However,
+Vim, a classic and highly customizable text editor, can be transformed into a
+powerhouse IDE comparable to VSCode with the right configuration and plugins.
+In this comprehensive guide, we will delve into modernizing Vim for Python
+development, database queries, and more, utilizing tools like Conquer of
+Completion (CoC), &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;coc-pyright&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod&lt;/span&gt;&lt;/code&gt;, and &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod-ui&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;section id="introduction-to-vim-modernization"&gt;
+&lt;h2&gt;Introduction to Vim Modernization&lt;/h2&gt;
+&lt;p&gt;Vim, known for its speed, lightweight footprint, and extensive customization
+options, has a steep learning curve compared to more beginner-friendly IDEs
+like VSCode. By incorporating plugins and configurations that enhance Vim’s
+functionality, developers can enjoy the best of both worlds: Vim’s efficiency
+and VSCode’s feature-rich environment.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="setting-up-conquer-of-completion-with-vim"&gt;
+&lt;h2&gt;Setting Up Conquer of Completion with Vim&lt;/h2&gt;
+&lt;p&gt;Conquer of Completion (CoC) is a versatile autocompletion engine that brings
+intelligent code suggestions, linting, and type checking to Vim. To get
+started, install CoC using a package manager like Vim-Plug:&lt;/p&gt;
+&lt;section id="installing-vim-plug-for-package-management"&gt;
+&lt;h3&gt;Installing Vim-Plug for Package Management&lt;/h3&gt;
+&lt;p&gt;Vim-Plug is a minimalist Vim plugin manager that simplifies the process of
+installing and managing plugins within Vim. To set up Vim-Plug for your Vim
+editor, follow these steps:&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"&gt;&lt;strong&gt;Download
+Vim-Plug&lt;/strong&gt;:&lt;/a&gt;
+Before you can begin using Vim-Plug, you’ll need to download the plugin manager
+script. You can do this by running the following command in your terminal:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-fLo&lt;span class="w"&gt; &lt;/span&gt;~/.vim/autoload/plug.vim&lt;span class="w"&gt; &lt;/span&gt;--create-dirs&lt;span class="w"&gt; &lt;/span&gt;https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Configure Vim&lt;/strong&gt;: Make sure that Vim is aware of the downloaded Vim-Plug
+script. You can do this by adding the following line to your &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.vimrc&lt;/span&gt;&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class="highlight-vim notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;call&lt;/span&gt; plug#begin&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;~/.vim/plugged&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Update Plugins&lt;/strong&gt;: To update your installed plugins, launch Vim and run the
+following command:&lt;/p&gt;
+&lt;div class="highlight-vim notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;PlugUpdate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Save and Restart Vim&lt;/strong&gt;: After adding or updating plugins, save your
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.vimrc&lt;/span&gt;&lt;/code&gt; file and restart Vim for the changes to take effect.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;By following these steps, you can effectively manage your Vim plugins using
+Vim-Plug, enhancing your development environment with additional features and
+capabilities.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;It’s important to note that the choice of using the Vim-Plug package manager in
+this post stems from its popularity and ease of use among the Vim community.
+While there are other package managers available for Vim, such as Vundle or
+Pathogen, the decision to focus on Plug was made to streamline the installation
+process for readers unfamiliar with Vim plugin management. This article aims to
+provide a practical and beginner-friendly approach to modernizing Vim, and
+leveraging the straightforward nature of Plug contributes to achieving that
+objective.  Different users may have varying preferences when it comes to
+package managers, and the author’s selection of Plug is intended to facilitate a
+smooth and accessible transition into enhancing Vim’s capabilities.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="installing-conquer-of-completion"&gt;
+&lt;h3&gt;Installing Conquer of Completion&lt;/h3&gt;
+&lt;div class="highlight-vim notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Plug &lt;span class="s1"&gt;&amp;#39;neoclide/coc.nvim&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; {&lt;span class="s1"&gt;&amp;#39;branch&amp;#39;&lt;/span&gt;: &lt;span class="s1"&gt;&amp;#39;release&amp;#39;&lt;/span&gt;}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;After installing CoC, you can enhance Python development by incorporating the
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;coc-pyright&lt;/span&gt;&lt;/code&gt; plugin. Run the following command within Vim to install
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;coc-pyright&lt;/span&gt;&lt;/code&gt; for optimal Python support:&lt;/p&gt;
+&lt;div class="highlight-vim notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;CocInstall coc&lt;span class="p"&gt;-&lt;/span&gt;pyright
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="elevating-python-development-in-vim"&gt;
+&lt;h2&gt;Elevating Python Development in Vim&lt;/h2&gt;
+&lt;p&gt;With CoC and &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;coc-pyright&lt;/span&gt;&lt;/code&gt; in place, Vim becomes a robust platform for Python
+development. Experience advanced autocompletion, linting, and type checking
+features directly within Vim as you work on Python scripts and projects.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="integrating-vim-dadbod-for-database-queries"&gt;
+&lt;h2&gt;Integrating &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod&lt;/span&gt;&lt;/code&gt; for Database Queries&lt;/h2&gt;
+&lt;p&gt;For database-focused tasks, Vim can be equipped with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod&lt;/span&gt;&lt;/code&gt;, a plugin
+that allows seamless execution of database queries within the editor. Install
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod&lt;/span&gt;&lt;/code&gt; using Vim-Plug for easy database interaction:&lt;/p&gt;
+&lt;div class="highlight-vim notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Plug &lt;span class="s1"&gt;&amp;#39;tpope/vim-dadbod&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;With “vim-dadbod” configured, you can set up database connections and execute
+queries with ease, all without leaving the comfort of Vim.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class="highlight-vim notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;DB postgres:&lt;span class="sr"&gt;//&lt;/span&gt;postgres@localhost/postgres
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="enhancing-the-database-experience-with-vim-dadbod-ui"&gt;
+&lt;h2&gt;Enhancing the Database Experience with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod-ui&lt;/span&gt;&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;For a more visual and interactive database interface, consider installing
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod-ui&lt;/span&gt;&lt;/code&gt;. This plugin complements &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod&lt;/span&gt;&lt;/code&gt;, providing a
+user-friendly environment for managing and executing database queries.&lt;/p&gt;
+&lt;div class="highlight-vim notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Plug &lt;span class="s1"&gt;&amp;#39;kristijanhusak/vim-dadbod-ui&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;To open the UI just type the following command:&lt;/p&gt;
+&lt;div class="highlight-vim notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;DBUI
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;By combining &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod&lt;/span&gt;&lt;/code&gt; with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod-ui&lt;/span&gt;&lt;/code&gt;, you can transform Vim into a
+capable tool for working with databases efficiently.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="enhancing-the-database-query-experience-with-coc-db"&gt;
+&lt;h2&gt;Enhancing the Database Query Experience with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;coc-db&lt;/span&gt;&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;To further enhance the database query capabilities in Vim when using plugins
+like &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod&lt;/span&gt;&lt;/code&gt; and &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod-ui&lt;/span&gt;&lt;/code&gt;, you can install the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;coc-db&lt;/span&gt;&lt;/code&gt; plugin for
+Conquer of Completion (CoC). This plugin adds database query completion features
+and enhances the overall database interaction experience within the Vim editor.&lt;/p&gt;
+&lt;section id="installing-coc-db-for-conquer-of-completion"&gt;
+&lt;h3&gt;Installing &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;coc-db&lt;/span&gt;&lt;/code&gt; for Conquer of Completion&lt;/h3&gt;
+&lt;p&gt;You can install the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;coc-db&lt;/span&gt;&lt;/code&gt; plugin alongside other plugins for CoC within Vim.
+Run the following command within Vim to add the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;coc-db&lt;/span&gt;&lt;/code&gt; plugin:&lt;/p&gt;
+&lt;div class="highlight-vim notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;CocInstall coc&lt;span class="p"&gt;-&lt;/span&gt;db
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Once installed, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;coc-db&lt;/span&gt;&lt;/code&gt; will provide intelligent database query completions,
+syntax highlighting, and helpful suggestions while working on database-related
+tasks within Vim. This complements the functionality of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod&lt;/span&gt;&lt;/code&gt; and
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod-ui&lt;/span&gt;&lt;/code&gt;, creating a seamless and efficient database management
+environment directly within Vim.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="final-thoughts-vim-vs-vscode"&gt;
+&lt;h2&gt;Final Thoughts: Vim vs. VSCode&lt;/h2&gt;
+&lt;p&gt;While VSCode boasts a wide range of features out of the box, Vim’s strength
+lies in its extensibility and robust customization capabilities. By integrating
+plugins like CoC, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;coc-pyright&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod&lt;/span&gt;&lt;/code&gt;, and &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vim-dadbod-ui&lt;/span&gt;&lt;/code&gt;, Vim can be
+upgraded to offer comparable functionality to VSCode, tailored to individual
+preferences and workflows.&lt;/p&gt;
+&lt;p&gt;In conclusion, Vim’s journey to modernization involves harnessing the power of
+plugins and configurations to create a tailored development environment. By
+leveraging the versatility of Vim and embracing its rich ecosystem of plugins,
+developers can optimize their workflow, enhance productivity, and transform Vim
+into a versatile IDE that rivals mainstream editors like VSCode.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.chauvel.org/blog/modernizing-vim/"/>
+    <summary>Python developer
+Python developer</summary>
+    <category term="coc" label="coc"/>
+    <category term="vim" label="vim"/>
+    <category term="vim-dadbod" label="vim-dadbod"/>
+    <category term="vim-dadbod-ui" label="vim-dadbod-ui"/>
+    <published>2024-04-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.chauvel.org/blog/chat-server-app/</id>
+    <title>Creating Your Own Small Scale Application Server Using PubSub Pattern</title>
+    <updated>2024-04-24T00:00:00+00:00</updated>
+    <author>
+      <name>Jean-Pierre Chauvel</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="creating-your-own-small-scale-application-server-using-pubsub-pattern"&gt;
+
+&lt;p&gt;I recently had the idea to develop a small proof-of-concept application server
+using the built-in pub/sub functionality of Redis, and decided to get started on
+it.&lt;/p&gt;
+&lt;p&gt;So the first step involved listing my dependencies, and, oh boy, there were
+quite a few for such a small app!&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;fastapi&lt;/span&gt;&lt;/code&gt;: The framework I chose to expose the websocket endpoint.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;typer&lt;/span&gt;&lt;/code&gt;: This package was required to capture simple command line options.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;websockets&lt;/span&gt;&lt;/code&gt;: This one was required to handle websocket communication between
+the server and the clients.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;redis.asyncio&lt;/span&gt;&lt;/code&gt;: This is basically the same as &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;redis&lt;/span&gt;&lt;/code&gt; but for &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;asyncio&lt;/span&gt;&lt;/code&gt;
+integration. It’s needed to expose the pub/sub functionality.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uvicorn&lt;/span&gt;&lt;/code&gt;: And finally, the ASGI web server to run the FastAPI application.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;section id="the-first-steps"&gt;
+&lt;h2&gt;The First Steps&lt;/h2&gt;
+&lt;p&gt;First we need a FastAPI boilerplate code, like so:&lt;/p&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/env python3&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;asyncio&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;logging&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;redis.asyncio&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;redis&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;typer&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;uvicorn&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;WebSocket&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;WebSocketDisconnect&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;redis.asyncio.client&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;PubSub&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing_extensions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;
+
+&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="n"&gt;global_room&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;global_room&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;basicConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;websocket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/chat/&lt;/span&gt;&lt;span class="si"&gt;{nickname}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main_chat_handler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;websocket&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;WebSocket&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;nickname&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;run_server&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;typer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Option&lt;/span&gt;&lt;span class="p"&gt;()]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;0.0.0.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;typer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Option&lt;/span&gt;&lt;span class="p"&gt;()]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;typer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Option&lt;/span&gt;&lt;span class="p"&gt;()]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;redis&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;redis&lt;/span&gt;
+    &lt;span class="n"&gt;uvicorn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;typer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;run_server&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This code is quite mouthful by itself, so I’ll do my best explaining what it
+does. The first thing we do is to initialize the FastAPI global singleton. Then
+I define the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;main_chat_handle()&lt;/span&gt;&lt;/code&gt; endpoint which is going to be where the main
+logic of the chat is located. It receives two parameters: &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;websocket&lt;/span&gt;&lt;/code&gt; and
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;nickname&lt;/span&gt;&lt;/code&gt;. The websocket is required by FastAPI and it’s the one used by the
+framework to handle the communication between the server and the client. The
+nickname is the “handle” the user specifies when she/he connects to the
+websocket.&lt;/p&gt;
+&lt;p&gt;Then the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;run_server()&lt;/span&gt;&lt;/code&gt; function is the entry point of the module and all it
+does is to pass the redis host, the host and the port of the chat server to the
+FastAPI singleton and to the uvicorn instance, respectively and then run the
+ASGI web server.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="the-main-handler"&gt;
+&lt;h2&gt;The Main Handler&lt;/h2&gt;
+&lt;p&gt;Now it’s time to define a special helper function that will allow us to get the
+redis client:&lt;/p&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_redis_client&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Redis&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;redis://&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;I will not go into details on how the Redis’ pub/sub work. You can see how it’s
+done by checking this code snippet that I extracted from &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;redis-py&lt;/span&gt;&lt;/code&gt;
+documentation:&lt;/p&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;asyncio&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;redis.asyncio&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;redis&lt;/span&gt;
+
+&lt;span class="n"&gt;STOPWORD&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;STOP&amp;quot;&lt;/span&gt;
+
+
+&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;channel&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PubSub&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;message&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;channel&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ignore_subscribe_messages&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(Reader) Message Received: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;data&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;STOPWORD&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;(Reader) STOP&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="k"&gt;break&lt;/span&gt;
+
+&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;redis://localhost&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pubsub&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;pubsub&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;pubsub&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subscribe&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;channel:1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;channel:2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;future&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create_task&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pubsub&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;publish&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;channel:1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;publish&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;channel:2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;World&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;publish&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;channel:1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;STOPWORD&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;future&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;So for the main handler, the code would look like this:&lt;/p&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;websocket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/chat/&lt;/span&gt;&lt;span class="si"&gt;{nickname}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main_chat_handler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;websocket&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;WebSocket&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;nickname&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;User &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;nickname&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; joined the chat&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Redis&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;get_redis_client&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;websocket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;accept&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+        &lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pubsub&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;pubsub&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;pubsub&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subscribe&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;global_room&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+            &lt;span class="n"&gt;reader_future&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Task&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create_task&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+                &lt;span class="n"&gt;coro&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;chat_reader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pubsub&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;websocket&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;nickname&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;publisher_future&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Task&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create_task&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+                &lt;span class="n"&gt;coro&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;chat_publisher&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;websocket&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;publisher_future&lt;/span&gt;
+            &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;reader_future&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="n"&gt;WebSocketDisconnect&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;User &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;nickname&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; is disconnecting...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;As you can see, we first accept the socket connection and then we start the
+pub/sub instance by subscribing to our global room, which is going to be the
+only channel in the pub/sub. The following steps are pretty simple: we schedule
+the pub/sub reader and the pub/sub publisher, which as the same time function as
+sending and receiving ends of the websocket, respectively.&lt;/p&gt;
+&lt;p&gt;If a &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;WebSocketDisconnect&lt;/span&gt;&lt;/code&gt; exception ist catched, then we smoothly print the
+“User X is disconnecting…” message.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="the-reader-and-the-publisher"&gt;
+&lt;h2&gt;The Reader and the Publisher&lt;/h2&gt;
+&lt;p&gt;These functions are pretty straightforward to understand. The reader first gets
+the message from the channel and then if the nickname of the message is not the
+same as the current user’s nickname, then it sends the message to the websocket.&lt;/p&gt;
+&lt;p&gt;The publisher function is even more simpler: All it does is to publish any
+received message from the websocket in an infinite loop.&lt;/p&gt;
+&lt;section id="reader"&gt;
+&lt;h3&gt;Reader&lt;/h3&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;chat_reader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;channel&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;PubSub&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;websocket&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;WebSocket&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;nickname&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;channel&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;ignore_subscribe_messages&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;
+        &lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;decoded_message&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;data&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+            &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loads&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;decoded_message&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="c1"&gt;# Exclude messages sent by the same user&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;nickname&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;nickname&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;websocket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;decoded_message&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="publisher"&gt;
+&lt;h3&gt;Publisher&lt;/h3&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;chat_publisher&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Redis&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;websocket&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;WebSocket&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;websocket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;receive_text&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="k"&gt;await&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;publish&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;channel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;global_room&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="final-thoughts"&gt;
+&lt;h2&gt;Final Thoughts&lt;/h2&gt;
+&lt;p&gt;In conclusion, creating a small-scale chat server app using Redis pub/sub
+functionality can be a fascinating and educational project for those looking to
+delve deeper into asynchronous programming and real-time messaging systems. By
+leveraging the power of asyncio, FastAPI, and Redis, developers can implement a
+robust chat application that facilitates seamless communication between users.
+Through this tutorial, you have not only learned how to set up the server-side
+logic for a chat app but also explored the intricacies of handling WebSocket
+connections and message broadcasting with Redis pub/sub.&lt;/p&gt;
+&lt;p&gt;As you continue to refine and expand upon this project, remember to focus on
+optimizing performance, enhancing security measures (such as authentication and
+encryption), and incorporating additional features to enrich the user
+experience. Embrace the iterative nature of software development, experiment
+with new functionalities, and don’t hesitate to seek community support or
+documentation resources when faced with challenges.&lt;/p&gt;
+&lt;p&gt;Keep coding, stay curious, and let your creativity guide you in unlocking the
+potential of real-time communication solutions with Redis and asyncio. Happy
+coding!&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;You can find the complete code here: &lt;a class="github reference external" href="https://github.com/jpchauvel/chat"&gt;jpchauvel/chat&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.chauvel.org/blog/chat-server-app/"/>
+    <summary>I recently had the idea to develop a small proof-of-concept application server
+using the built-in pub/sub functionality of Redis, and decided to get started on
+it.</summary>
+    <category term="chat" label="chat"/>
+    <category term="pubsub" label="pubsub"/>
+    <category term="python" label="python"/>
+    <category term="redis" label="redis"/>
+    <category term="server" label="server"/>
+    <category term="websockets" label="websockets"/>
+    <published>2024-04-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.chauvel.org/blog/adding-sphinx-directive-to-render-gravatar/</id>
+    <title>Adding a Sphinx Directive to Render Your Gravatar Pic</title>
+    <updated>2024-04-10T00:00:00+00:00</updated>
+    <author>
+      <name>Jean-Pierre Chauvel</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="adding-a-sphinx-directive-to-render-your-gravatar-pic"&gt;
+
+&lt;p&gt;&lt;img alt="Gravatar" class="align-center" src="https://www.chauvel.org/_images/gravatar.png" style="width: 200px;" /&gt;&lt;/p&gt;
+&lt;p&gt;I was having this idea of embedding my gravatar pic along the kind-of-corny text
+that is located in the &lt;a class="reference internal" href="../about/"&gt;&lt;span class="std std-doc"&gt;about&lt;/span&gt;&lt;/a&gt; page. So, I decided to create a
+Shpinx directive that allowed me to insert/embed into a Markdown file my
+Gravatar pic.&lt;/p&gt;
+&lt;p&gt;I immediately dismissed the idea because it was better to do it using javascript
+alone in a Sphinx template (as a matter of fact, the gravatar API is pretty
+simple, you just have to append a SHA-256 hash of your email address linked to
+your Gravatar account to this URL &lt;a class="reference external" href="https://gravatar.com/avatar/%7Byour_hash_here%7D"&gt;https://gravatar.com/avatar/{your_hash_here}&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;The directive is called &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;{gravatar}&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;section id="example"&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;div class="highlight-markdown notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gu"&gt;```{gravatar} jean.pierre@chauvel.org&lt;/span&gt;
+&lt;span class="gu"&gt;---&lt;/span&gt;
+align: center
+class: something
+style: &amp;quot;border-radius: 200px; margin: 0 auto; display: block;&amp;quot;
+&lt;span class="gu"&gt;width: 200&lt;/span&gt;
+&lt;span class="gu"&gt;---&lt;/span&gt;
+```
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="something"&gt;
+    &lt;img src=https://www.gravatar.com/avatar/0d520a59095b64003f74c59589ccbc3a?s=200
+ align="center" class="something" style="border-radius: 200px; margin: 0 auto; display: block;" width="200" height="200"&gt;
+&lt;/div&gt;&lt;/section&gt;
+&lt;section id="source-code"&gt;
+&lt;h2&gt;Source Code&lt;/h2&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;A directive to generate an image tag with a Gravatar pic.&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;docutils&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;nodes&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;docutils.parsers.rst&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Directive&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;jinja2&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BaseLoader&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;libgravatar&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Gravatar&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sphinx.application&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Sphinx&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sphinx.util&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;logging&lt;/span&gt;
+
+&lt;span class="n"&gt;logger&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getLogger&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;GRAVATAR_TEMPLATE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;lt;div class=&amp;quot;{{ klass }}&amp;quot;&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;    &amp;lt;img src={{ url }}&lt;/span&gt;
+&lt;span class="s2"&gt;    {&lt;/span&gt;&lt;span class="si"&gt;% i&lt;/span&gt;&lt;span class="s2"&gt;f align %} align=&amp;quot;{{ align }}&amp;quot;{&lt;/span&gt;&lt;span class="si"&gt;% e&lt;/span&gt;&lt;span class="s2"&gt;ndif %}&lt;/span&gt;
+&lt;span class="s2"&gt;    {&lt;/span&gt;&lt;span class="si"&gt;% i&lt;/span&gt;&lt;span class="s2"&gt;f klass %} class=&amp;quot;{{ klass }}&amp;quot;{&lt;/span&gt;&lt;span class="si"&gt;% e&lt;/span&gt;&lt;span class="s2"&gt;ndif %}&lt;/span&gt;
+&lt;span class="s2"&gt;    {&lt;/span&gt;&lt;span class="si"&gt;% i&lt;/span&gt;&lt;span class="s2"&gt;f style %} style=&amp;quot;{{ style }}&amp;quot;{&lt;/span&gt;&lt;span class="si"&gt;% e&lt;/span&gt;&lt;span class="s2"&gt;ndif %}&lt;/span&gt;
+&lt;span class="s2"&gt;    {&lt;/span&gt;&lt;span class="si"&gt;% i&lt;/span&gt;&lt;span class="s2"&gt;f width %} width=&amp;quot;{{ width }}&amp;quot; height=&amp;quot;{{ width }}&amp;quot;{&lt;/span&gt;&lt;span class="si"&gt;% e&lt;/span&gt;&lt;span class="s2"&gt;ndif %}&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;GravatarImage&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Directive&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;arguments&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="n"&gt;has_content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
+    &lt;span class="n"&gt;final_argument_whitespace&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
+    &lt;span class="n"&gt;option_spec&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;align&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;class&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;style&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;width&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;email&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="n"&gt;align&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;align&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;klass&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;class&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;style&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;style&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;width&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;width&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Getting Gravatar image for email: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;email&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Gravatar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;email&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_image&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;width&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;?s=&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Got image URL: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="n"&gt;template&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;loader&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;BaseLoader&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;trim_blocks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lstrip_blocks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;
+        &lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GRAVATAR_TEMPLATE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="n"&gt;out&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;template&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="n"&gt;align&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;align&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="n"&gt;klass&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;klass&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="c1"&gt;# User a raw pass-through node&lt;/span&gt;
+        &lt;span class="n"&gt;para&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nodes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;raw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;html&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;para&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Sphinx&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_directive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gravatar&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;GravatarImage&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;version&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;0.1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;parallel_read_safe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;parallel_write_safe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.chauvel.org/blog/adding-sphinx-directive-to-render-gravatar/"/>
+    <summary>Gravatar</summary>
+    <category term="directive" label="directive"/>
+    <category term="gravatar" label="gravatar"/>
+    <category term="sphinx" label="sphinx"/>
+    <published>2024-04-10T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.chauvel.org/blog/embedding-jupyterlite-in-sphinx/</id>
+    <title>Exploring JupyterLite and Embedding it in Your Sphinx Blog</title>
+    <updated>2024-04-08T00:00:00+00:00</updated>
+    <author>
+      <name>Jean-Pierre Chauvel</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="exploring-jupyterlite-and-embedding-it-in-your-sphinx-blog"&gt;
+
+&lt;p&gt;&lt;img alt="JupyterLite" class="align-center" src="https://www.chauvel.org/_images/jupyterlite.png" style="height: 300px;" /&gt;&lt;/p&gt;
+&lt;section id="introduction"&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;As a developer and data enthusiast, I always find myself exploring new
+technologies and tools to enhance my projects and documentation. Recently, my
+curiosity led me to discover JupyterLite, a lightweight implementation of
+JupyterLab that runs entirely in the browser without the need for a server.
+Intrigued by its capabilities, I decided to experiment with embedding
+JupyterLite in my Sphinx blog using the jupyterlite-sphinx extension. In this
+post, I will share my journey of integrating JupyterLite into my documentation
+and the steps I took to make it work seamlessly with my Sphinx-built blog.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="installation-and-setup"&gt;
+&lt;h2&gt;Installation and Setup&lt;/h2&gt;
+&lt;p&gt;The first step to integrating JupyterLite into your Sphinx documentation is to
+install the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;jupyterlite-sphinx&lt;/span&gt;&lt;/code&gt; package. You can do this easily using pip:&lt;/p&gt;
+&lt;div class="highlight-sh notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;jupyterlite-sphinx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;After installing the extension, you need to add it to the extensions list in
+your Sphinx project’s &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;conf.py&lt;/span&gt;&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class="highlight-sh notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;extensions&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jupyterlite_sphinx&amp;#39;&lt;/span&gt;,
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# Other Sphinx extensions&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# ...&lt;/span&gt;
+&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Once you have added the extension, JupyterLite should automatically show up in
+your online documentation. To preview it locally, you can navigate to the build
+directory (e.g., &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;_build/html&lt;/span&gt;&lt;/code&gt;) and use Python’s built-in HTTP server to serve
+the site:&lt;/p&gt;
+&lt;div class="highlight-sh notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;python&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;http.server
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;By default, jupyterlite-sphinx does not install a Python kernel. If you want to
+have a Python kernel available in your documentation, you can install either
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;jupyterlite-pyodide-kernel&lt;/span&gt;&lt;/code&gt; or &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;jupyterlite-xeus&lt;/span&gt;&lt;/code&gt; with pip:&lt;/p&gt;
+&lt;div class="highlight-sh notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;jupyterlite-pyodide-kernel
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="configuration"&gt;
+&lt;h2&gt;Configuration&lt;/h2&gt;
+&lt;p&gt;JupyterLite-sphinx provides several configuration options that allow you to
+customize how JupyterLite behaves in your documentation. You can embed custom
+content, such as notebooks and data files, in your JupyterLite build by
+specifying the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;jupyterlite_contents&lt;/span&gt;&lt;/code&gt; variable in your &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;conf.py&lt;/span&gt;&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;jupyterlite_contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;./path/to/my/notebooks/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;my_other_notebook.ipynb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;If you want to change the default build directory from the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;docs&lt;/span&gt;&lt;/code&gt; directory,
+you can specify a custom directory using the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;jupyterlite_dir&lt;/span&gt;&lt;/code&gt; variable:&lt;/p&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;jupyterlite_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/path/to/your/lite/dir&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;To pre-install Python packages in the kernel environment, you can use
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;jupyterlite-pyodide&lt;/span&gt;&lt;/code&gt; with the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pyodide-python&lt;/span&gt;&lt;/code&gt; kernel. You can define the
+dependencies in an &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;environment.yml&lt;/span&gt;&lt;/code&gt; file in your docs directory:&lt;/p&gt;
+&lt;div class="highlight-yaml notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;pyodide-python-kernel&lt;/span&gt;
+&lt;span class="nt"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://repo.mamba.pm/emscripten-forge&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;https://repo.mamba.pm/conda-forge&lt;/span&gt;
+&lt;span class="nt"&gt;dependencies&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;numpy&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;matplotlib&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;ipycanvas&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Additionally, jupyterlite-sphinx provides a &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;replite&lt;/span&gt;&lt;/code&gt; Sphinx directive that
+allows you to embed a REPLite console in your documentation. This directive
+accepts various options, including the kernel type, height, prompt text, and
+prompt color:&lt;/p&gt;
+&lt;div class="highlight-rst notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;replite&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;
+   &lt;span class="nc"&gt;:kernel:&lt;/span&gt; python
+   &lt;span class="nc"&gt;:height:&lt;/span&gt; 600px
+   &lt;span class="nc"&gt;:prompt:&lt;/span&gt; Try Replite!
+   &lt;span class="nc"&gt;:prompt_color:&lt;/span&gt; #dc3545
+
+   import matplotlib.pyplot as plt
+   import numpy as np
+
+   x = np.linspace(0, 2 * np.pi, 200)
+   y = np.sin(x)
+
+   fig, ax = plt.subplots()
+   ax.plot(x, y)
+   plt.show()
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="try-it-out"&gt;
+&lt;h2&gt;Try it out!&lt;/h2&gt;
+&lt;p&gt;Enter some Python code and then press Shift + Enter.&lt;/p&gt;
+
+                &lt;div
+                    class="jupyterlite_sphinx_iframe_container"
+                    style="width: 100%; height: 600px;"
+                    onclick="window.jupyterliteShowIframe(
+                        '02b616ec-93c9-4273-86aa-ea3155d2bd03',
+                        window.jupyterliteConcatSearchParams('../lite/repl/index.html?kernel=python&amp;code=import%20matplotlib.pyplot%20as%20plt%0Aimport%20numpy%20as%20np%0A%0Ax%20%3D%20np.linspace%280%2C%202%20%2A%20np.pi%2C%20200%29%0Ay%20%3D%20np.sin%28x%29%0A%0Afig%2C%20ax%20%3D%20plt.subplots%28%29%0Aax.plot%28x%2C%20y%29%0Aplt.show%28%29', false)
+                    )"
+                &gt;
+                    &lt;div
+                        id=02b616ec-93c9-4273-86aa-ea3155d2bd03
+                        class="jupyterlite_sphinx_try_it_button jupyterlite_sphinx_try_it_button_unclicked"
+                        style="background-color: ;"
+                    &gt;
+                    Try Replite!
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/section&gt;
+&lt;section id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In conclusion, experimenting with JupyterLite and embedding it in my Sphinx blog
+using the jupyterlite-sphinx extension has been a rewarding experience.
+The ability to seamlessly integrate interactive Jupyter notebooks and REPL
+consoles into my documentation has added a new level of interactivity and
+engagement for my readers. By following the installation steps and configuration
+options provided by jupyterlite-sphinx, it is easy to enhance your Sphinx-built
+blog with JupyterLite features. I look forward to further exploring the
+possibilities that JupyterLite opens up for creating dynamic and interactive
+documentation experiences.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.chauvel.org/blog/embedding-jupyterlite-in-sphinx/"/>
+    <summary>JupyterLite</summary>
+    <category term="jupyterlite" label="jupyterlite"/>
+    <category term="sphinx" label="sphinx"/>
+    <published>2024-04-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.chauvel.org/blog/ai-generated-article/</id>
+    <title>The Heart of the 1980s Computing Revolution: The MOS 6502 Microprocessor</title>
+    <updated>2024-04-01T00:00:00+00:00</updated>
+    <author>
+      <name>Jean-Pierre Chauvel</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="the-heart-of-the-1980s-computing-revolution-the-mos-6502-microprocessor"&gt;
+
+&lt;p&gt;In a deep dive into the technological past, we visit the cornerstone of the 1980s
+home computing revolution, the MOS 6502 microprocessor. This episode of &lt;em&gt;The
+8-Bit Guy&lt;/em&gt; not only explores the processor that powered numerous classic
+computers, arcade machines, and video game consoles but also brings insights
+from one of the chip’s original creators, Bill Mensch.&lt;/p&gt;
+&lt;p&gt;The 1980s were a burgeoning era for personal computing, video games, and
+digital entertainment. At the heart of this technological revolution was a
+single piece of silicon, the 6502 microprocessor by MOS Technology. A marvel of
+its time, the 6502 made computing affordable and accessible, powering cherished
+systems like the Commodore PET, VIC-20, the original Apple II series, Atari’s
+400 and 800 home computers, and the BBC Micro, among many others.&lt;/p&gt;
+&lt;div class="video_wrapper" style=""&gt;
+&lt;iframe allowfullscreen="true" src="https://www.youtube.com/embed/acUH4lWe2NQ" style="border: 0; height: 345px; width: 560px"&gt;
+&lt;/iframe&gt;&lt;/div&gt;&lt;p&gt;Interestingly, the ubiquity of the 6502 allowed for a level of
+interoperability unheard of today. Processors could be exchanged among
+different computers, from a Commodore disk drive to an Atari 400, and still
+function perfectly. This standardization underscored the 6502’s fundamental role
+in an era of rapid technological advancement and diversification.&lt;/p&gt;
+&lt;p&gt;However, the journey of the 6502 doesn’t end with these iconic machines. The
+processor found its way into the heart of some of the most influential gaming
+systems of the time, including Atari’s 2600, 5200, 7800 consoles, and Nintendo’s
+NES. Remarkably, variants of the 6502 even powered unexpected devices like
+Furbies and Tamagotchis, extending its influence far beyond the computer lab and
+into the realm of consumer electronics and entertainment.&lt;/p&gt;
+&lt;p&gt;Diving deeper, the episode highlights the technical prowess of the 6502, which
+despite its humble 1MHz clock speed, rivaled and sometimes exceeded the
+performance of other CPUs of its generation, like the Z80. This efficiency was
+largely due to its ability to complete operations with fewer clock cycles and
+utilize both the rising and falling edges of its clock signal.&lt;/p&gt;
+&lt;p&gt;As the 1980s progressed, variants of the 6502, such as the 65C02 and 65C816,
+emerged, enhancing the original design with new instructions and capabilities,
+including a larger address space. These improvements paved the way for more
+advanced computing applications and even 16-bit computing within the same
+architectural lineage.&lt;/p&gt;
+&lt;p&gt;In an enlightening conversation with Bill Mensch, viewers gain insight into the
+modern applications of the 6502 and its variants, which surprisingly continue to
+play roles in various industries, from hobby electronics to life-support
+systems. Mensch’s reflections on the transition from 8-bit to 32-bit computing
+illustrate the rapid pace of technological evolution and the enduring legacy of
+the 6502 in shaping the future of computing.&lt;/p&gt;
+&lt;div class="sidebar note admonition"&gt;
+&lt;p class="admonition-title"&gt;YouTube Insight Generator Repository&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/jpchauvel/yt-insight-generator"&gt;Link Here&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Through a meticulously detailed analysis and retrospective, &lt;em&gt;The 8-Bit Guy&lt;/em&gt;
+episode not only celebrates the 6502 microprocessor’s pivotal role in
+technology history but also underscores the processor’s lasting impact on
+computing, gaming, and even everyday consumer products. The 6502’s story is a
+testament to the power of innovation and the far-reaching consequences of
+engineering excellence.&lt;/p&gt;
+&lt;p&gt;In conclusion, the MOS 6502 microprocessor was not just a piece of hardware;
+it was the heartbeat of an era that laid the groundwork for the digital world we
+live in today. Its legacy, as revealed in this episode, is a fascinating chapter
+in the annals of computing history, evidencing the profound effect a single
+silicon chip can have on the world.&lt;/p&gt;
+&lt;p&gt;For those interested in exploring the depths of computing history, the
+story of the 6502 offers an inspiring glimpse into an era where creativity and
+innovation paved the way for the technological marvels of the future.&lt;/p&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.chauvel.org/blog/ai-generated-article/"/>
+    <summary>In a deep dive into the technological past, we visit the cornerstone of the 1980s
+home computing revolution, the MOS 6502 microprocessor. This episode of The
+8-Bit Guy not only explores the processor that powered numerous classic
+computers, arcade machines, and video game consoles but also brings insights
+from one of the chip’s original creators, Bill Mensch.</summary>
+    <category term="8-bit-guy" label="8-bit-guy"/>
+    <category term="ai-generated" label="ai-generated"/>
+    <published>2024-04-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.chauvel.org/blog/calculate-pi/</id>
+    <title>Calculating π with Numba</title>
+    <updated>2024-03-29T00:00:00+00:00</updated>
+    <author>
+      <name>Jean-Pierre Chauvel</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="calculating-with-numba"&gt;
+
+&lt;p&gt;Here is a version of the calculation of π using numba. Numba does just-in-time compilation from Python code and also supports parallelism. I was able to test &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;calculate_pi()&lt;/span&gt;&lt;/code&gt; in the order of billions of iteretions and without consuming too much memory.&lt;/p&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/env python3&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;random&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;numba&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;njit&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prange&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+
+&lt;span class="nd"&gt;@njit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parallel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;calculate_pi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;prange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uniform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uniform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="n"&gt;distance&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;distance&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argparse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ArgumentParser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Calculate п.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;iteration&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;metavar&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;number of iterations&amp;quot;&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_args&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iteration&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;calculate_pi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This calculation method is described in this Wikipedia article &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Approximations_of_%CF%80#Summing_a_circle's_area"&gt;https://en.wikipedia.org/wiki/Approximations_of_π#Summing_a_circle’s_area&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.chauvel.org/blog/calculate-pi/"/>
+    <summary>Here is a version of the calculation of π using numba. Numba does just-in-time compilation from Python code and also supports parallelism. I was able to test calculate_pi() in the order of billions of iteretions and without consuming too much memory.</summary>
+    <category term="numba" label="numba"/>
+    <category term="python" label="python"/>
+    <published>2024-03-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.chauvel.org/blog/building-blog-from-scratch/</id>
+    <title>Building and Deploying a Blog with Sphinx, Ablog, and PyData Sphinx Theme</title>
+    <updated>2024-03-29T00:00:00+00:00</updated>
+    <author>
+      <name>Jean-Pierre Chauvel</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="building-and-deploying-a-blog-with-sphinx-ablog-and-pydata-sphinx-theme"&gt;
+
+&lt;p&gt;Python is not only a powerful tool for data analysis and backend development – it’s also an excellent platform for content creators who want to share their ideas with the world. As a fellow Pythonista, I was determined to build a blog using Python-centric tools. That’s when I discovered a fantastic trio: Sphinx, Ablog, and the PyData Sphinx Theme. Here’s how to build your blog with these tools and deploy it on GitHub Pages with the power of GitHub Actions.&lt;/p&gt;
+&lt;section id="crafting-your-blog"&gt;
+&lt;h2&gt;Crafting Your Blog&lt;/h2&gt;
+&lt;p&gt;Let’s run through the steps to create your blog’s scaffolding and content, all with a Python flavor.&lt;/p&gt;
+&lt;section id="step-1-install-the-necessary-packages"&gt;
+&lt;h3&gt;Step 1: Install the Necessary Packages&lt;/h3&gt;
+&lt;p&gt;First, verify that your environment has Python and &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pip&lt;/span&gt;&lt;/code&gt; installed. Then, proceed with installing Sphinx, Ablog, and the PyData Sphinx Theme:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;sphinx&lt;span class="w"&gt; &lt;/span&gt;ablog&lt;span class="w"&gt; &lt;/span&gt;sphinx-pydata-theme
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="step-2-start-your-blog-with-ablog"&gt;
+&lt;h3&gt;Step 2: Start Your Blog with Ablog&lt;/h3&gt;
+&lt;p&gt;Instead of using &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sphinx-quickstart&lt;/span&gt;&lt;/code&gt;, Ablog provides its command to create a new blog project:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ablog&lt;span class="w"&gt; &lt;/span&gt;start
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This command will set up your blog with typical Sphinx configurations and Ablog presets.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="step-3-configure-your-blog-with-pydata-theme-and-ablog"&gt;
+&lt;h3&gt;Step 3: Configure Your Blog with PyData Theme and Ablog&lt;/h3&gt;
+&lt;p&gt;After the initial setup, personalize your blog settings in the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;conf.py&lt;/span&gt;&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# conf.py&lt;/span&gt;
+
+&lt;span class="n"&gt;extensions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;ablog&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;sphinx.ext.intersphinx&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="c1"&gt;# Add any other Sphinx extensions here.&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;html_theme&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;pydata_sphinx_theme&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Additional theme options are available on the theme&amp;#39;s documentation.&lt;/span&gt;
+&lt;span class="n"&gt;html_theme_options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;search_bar_text&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Search this site...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="c1"&gt;# More theme options&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Configure ablog&lt;/span&gt;
+&lt;span class="n"&gt;blog_baseurl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://[github-username].github.io/[repository-name]/&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;blog_title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;My Pythonista Blog&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;blog_authors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;Your Nickname&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Your Name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# For generating a feed&lt;/span&gt;
+&lt;span class="n"&gt;blog_feed_archives&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="step-4-writing-blog-posts"&gt;
+&lt;h3&gt;Step 4: Writing Blog Posts&lt;/h3&gt;
+&lt;p&gt;Create your posts in reStructuredText format within the posts section you set up:&lt;/p&gt;
+&lt;div class="highlight-rst notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;post&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt; Sept 15, 2023
+   &lt;span class="nc"&gt;:tags:&lt;/span&gt; python, sphinx, ablog
+   &lt;span class="nc"&gt;:category:&lt;/span&gt; python
+   &lt;span class="nc"&gt;:author:&lt;/span&gt; Your Name
+
+&lt;span class="gh"&gt;Journey with Python&lt;/span&gt;
+&lt;span class="gh"&gt;===================&lt;/span&gt;
+
+Begin storytelling with Python…
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Save it into the correct directory with an &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.rst&lt;/span&gt;&lt;/code&gt; extension and the Sphinx/Ablog combination will handle the rest.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="enhancing-engagement-adding-giscus-comments"&gt;
+&lt;h2&gt;Enhancing Engagement: Adding Giscus Comments&lt;/h2&gt;
+&lt;p&gt;Engage with your readers by adding a comment section using Giscus, a comment service that uses GitHub discussions, right into your Sphinx blog.&lt;/p&gt;
+&lt;section id="step-1-configure-giscus-on-your-blog"&gt;
+&lt;h3&gt;Step 1: Configure Giscus on Your Blog&lt;/h3&gt;
+&lt;p&gt;Giscus requires a specific configuration embedded into your blog. You can include this in your Sphinx HTML templates:&lt;/p&gt;
+&lt;div class="highlight-html notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;&amp;lt;!-- In _templates/layout.html --&amp;gt;&lt;/span&gt;
+{% extends &amp;quot;!layout.html&amp;quot; %}
+
+{% block extrahead %}
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://giscus.app/client.js&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;data-repo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;[YourGitHubUsername]/[YourRepoName]&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;data-repo-id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;[RepoID]&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;data-category&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;[DiscussionCategory]&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;data-category-id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;[DiscussionCategoryID]&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;data-mapping&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;pathname&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;data-reactions-enabled&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;data-emit-metadata&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;data-theme&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;preferred_color_scheme&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;async&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+{{ super() }}
+{% endblock %}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Remember to replace placeholders with your repository details. You can get these from your Giscus configuration page.&lt;/p&gt;
+&lt;p&gt;You need other steps to enable Giscus. Refer to &lt;a class="github reference external" href="https://github.com/giscus/giscus?tab=readme-ov-file"&gt;giscus/giscus&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="step-2-deploy-with-github-actions"&gt;
+&lt;h3&gt;Step 2: Deploy with GitHub Actions&lt;/h3&gt;
+&lt;p&gt;Automatic deployment to GitHub Pages can be set up using a workflow in the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.github/workflows/blog.yml&lt;/span&gt;&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class="highlight-yaml notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Deploy Blog to GitHub Pages&lt;/span&gt;
+
+&lt;span class="nt"&gt;on&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;push&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;branches&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;main&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# or your default branch name&lt;/span&gt;
+
+&lt;span class="nt"&gt;jobs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;deploy&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;runs-on&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;ubuntu-latest&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;steps&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Checkout&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;uses&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;actions/checkout@v4&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Set up Python&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;uses&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;actions/setup-python@v4&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;with&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;python-version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#39;3.x&amp;#39;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Replace &amp;#39;3.x&amp;#39; with your preferred version&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Install Dependencies&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;run&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;|&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="no"&gt;pip install sphinx ablog sphinx_pydata_theme&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Build Blog&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;run&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;ablog build&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;Publish to GitHub Pages&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;uses&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;peaceiris/actions-gh-pages@v3&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;with&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;github_token&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;${{ secrets.GITHUB_TOKEN }}&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;publish_dir&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;./_build/html&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This workflow will build and deploy your blog to GitHub Pages whenever you push to the main branch.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.chauvel.org/blog/building-blog-from-scratch/"/>
+    <summary>Python is not only a powerful tool for data analysis and backend development – it’s also an excellent platform for content creators who want to share their ideas with the world. As a fellow Pythonista, I was determined to build a blog using Python-centric tools. That’s when I discovered a fantastic trio: Sphinx, Ablog, and the PyData Sphinx Theme. Here’s how to build your blog with these tools and deploy it on GitHub Pages with the power of GitHub Actions.</summary>
+    <category term="ablog" label="ablog"/>
+    <category term="giscus" label="giscus"/>
+    <category term="github-actions" label="github-actions"/>
+    <category term="github-pages" label="github-pages"/>
+    <category term="python" label="python"/>
+    <category term="sphinx" label="sphinx"/>
+    <published>2024-03-29T00:00:00+00:00</published>
+  </entry>
+</feed>
