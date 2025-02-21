@@ -185,6 +185,7 @@ html_theme_options = {
         "examples/no-sidebar": [],
     },
     "article_footer_items": ["giscus.html"],
+    "analytics": "G-F0WV9RGJW0",
 }
 
 html_sidebars = {
