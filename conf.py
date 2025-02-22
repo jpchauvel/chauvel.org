@@ -180,12 +180,15 @@ html_theme_options = {
     "navbar_center": ["navbar-nav"],
     "footer_start": ["copyright"],
     "footer_center": ["sphinx-version"],
+    "navigation_with_keys": True,
     "secondary_sidebar_items": {
         "**/*": ["page-toc", "sourcelink"],
         "examples/no-sidebar": [],
     },
     "article_footer_items": ["giscus.html"],
-    "analytics": "G-F0WV9RGJW0",
+    "analytics": {
+            "google_analytics_id": "G-F0WV9RGJW0",
+    },
 }
 
 html_sidebars = {
