@@ -8,7 +8,7 @@ readme = "README.md"
 packages = [{include = "chauvel"}]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.13"
+python = ">=3.9,<3.14"
 Sphinx = "^7.2.6"
 myst-parser = {extras = ["linkify"], version = "^2.0.0"}
 linkify = "^1.4"
