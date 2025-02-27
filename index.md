@@ -2,7 +2,7 @@
 myst:
   html_meta:
    "description": "Hi, my name is Jean-Pierre Chauvel and I'm a Software Engineer and Pythonista. This blog is dedicated to tech stuff, more specifically: Python related stuff."
-   "keywords": "python, peru, programming, blog, development, code, language, artificial intelligence, ai, frameworks"
+   "keywords": "hellhound, chauvel, python, peru, programming, blog, development, code, language, artificial intelligence, ai, frameworks"
 ---
 
 hellhound ©
