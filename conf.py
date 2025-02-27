@@ -251,6 +251,11 @@ ogp_social_cards: dict[str, str] = {
     "image": "_static/logo/hellhound-profile.gif",
 }
 
+# -- Options for Jupyterlite-Sphinx -------------------------------------------
+
+# Build-time configuration for JupyterLite
+jupyterlite_config = "jupyter_lite_config.json"
+
 # -- Custom Sphinx app setup to hook after the build is finished --------------
 
 
