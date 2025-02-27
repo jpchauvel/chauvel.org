@@ -398,7 +398,7 @@ async def get_pda_message(program: Program, pda: Pubkey) -> str | None:
         return None
 ```
 
-**Automated Workflow**: The script assess the existence of a PDA and determine
+**Automated Workflow**: The script assess the existence of a PDA and determines
 the appropriate action autonomously. The `check_and_create_or_update_pda()`
 function orchestrates this flow, deciding whether to create a new account or
 update an existing one.
