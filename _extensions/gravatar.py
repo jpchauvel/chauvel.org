@@ -24,7 +24,6 @@ GRAVATAR_TEMPLATE: str = """
 
 
 class GravatarImage(Directive):
-    required_arguments: int = 1
     has_content = True
     final_argument_whitespace = False
     option_spec: dict[str, Callable[[str], Any]] = {
