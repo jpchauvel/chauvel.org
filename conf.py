@@ -10,6 +10,7 @@ import os
 import shutil
 import sys
 from pathlib import Path
+from typing import Any
 
 from ablog.commands import find_confdir, read_conf
 
@@ -17,13 +18,13 @@ sys.path.append(str(Path(".").resolve()))
 
 # -- Project information -----------------------------------------------------
 
-project = "hellhound ©"
-copyright = "2024, Jean-Pierre Chauvel"
-author = "Jean-Pierre Chauvel"
+project: str = "hellhound ©"
+copyright: str = "2024, Jean-Pierre Chauvel"
+author: str = "Jean-Pierre Chauvel"
 
 # -- General configuration ---------------------------------------------------
 
-extensions = [
+extensions: list[str] = [
     "sphinx.ext.napoleon",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
@@ -45,12 +46,12 @@ extensions = [
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
+templates_path: list[str] = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = [
+exclude_patterns: list[str] = [
     "_website",
     "build",
     "Thumbs.db",
@@ -69,7 +70,7 @@ exclude_patterns = [
 # -- MyST options ------------------------------------------------------------
 
 # This allows us to use ::: to denote directives, useful for admonitions
-myst_enable_extensions = [
+myst_enable_extensions: list[str] = [
     "amsmath",
     "attrs_inline",
     "colon_fence",
@@ -85,40 +86,42 @@ myst_enable_extensions = [
     "substitution",
     "tasklist",
 ]
-myst_heading_anchors = 2
-myst_substitutions = {"rtd": "[Read the Docs](https://readthedocs.org/)"}
+myst_heading_anchors: int = 2
+myst_substitutions: dict[str, str] = {
+    "rtd": "[Read the Docs](https://readthedocs.org/)"
+}
 
 # -- Internationalization ----------------------------------------------------
 
 # specifying the natural language populates some key tags
-language = "en"
+language: str = "en"
 
 # -- Ablog options -----------------------------------------------------------
 
-blog_title = "hellhound ©"
-blog_path = "blog"
-blog_authors = {
+blog_title: str = "hellhound ©"
+blog_path: str = "blog"
+blog_authors: dict[str, tuple[str, str]] = {
     "hellhound": ("Jean-Pierre Chauvel", "https://github.com/jpchauvel"),
 }
-blog_baseurl = "https://www.chauvel.org"
-blog_feed_fulltext = True
-blog_feed_subtitle = (
+blog_baseurl: str = "https://www.chauvel.org"
+blog_feed_fulltext: bool = True
+blog_feed_subtitle: str = (
     "This blog is dedicated to tech stuff,"
     " more specifically: Python related stuff."
 )
-fontawesome_included = True
-post_redirect_refresh = 1
+fontawesome_included: bool = True
+post_redirect_refresh: int = 1
 
 # -- Options for HTML output -------------------------------------------------
 
-html_title = ""
-html_theme = "pydata_sphinx_theme"
-html_logo = "_static/logo/hellhound.gif"
+html_title: str = ""
+html_theme: str = "pydata_sphinx_theme"
+html_logo: str = "_static/logo/hellhound.gif"
 # html_favicon = "_static/favicon/favicon-48x48.gif"
-html_sourcelink_suffix = ""
-html_last_updated_fmt = ""  # to reveal the build date in the pages meta
+html_sourcelink_suffix: str = ""
+html_last_updated_fmt: str = ""  # to reveal the build date in the pages meta
 
-html_theme_options = {
+html_theme_options: dict[str, Any] = {
     "header_links_before_dropdown": 4,
     "icon_links": [
         {
@@ -153,8 +156,7 @@ html_theme_options = {
         },
         {
             "name": "Stack Overflow",
-            "url":
-            "https://stackoverflow.com/users/434423/jean-pierre-chauvel",
+            "url": "https://stackoverflow.com/users/434423/jean-pierre-chauvel",
             "icon": "fa-brands fa-stack-overflow",
         },
         {
@@ -187,11 +189,11 @@ html_theme_options = {
     },
     "article_footer_items": ["giscus.html"],
     "analytics": {
-            "google_analytics_id": "G-F0WV9RGJW0",
+        "google_analytics_id": "G-F0WV9RGJW0",
     },
 }
 
-html_sidebars = {
+html_sidebars: dict[str, list[str]] = {
     "about": ["about.html"],
     "blog": [
         "ablog/categories.html",
@@ -205,37 +207,35 @@ html_sidebars = {
     ],
 }
 
-html_context = {
+html_context: dict[str, str] = {
     "github_user": "jpchauvel",
     "github_repo": "chauvel.org",
     "github_version": "gh-pages",
     "doc_path": "blog",
+    "email": "jean.pierre@chauvel.org",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
-todo_include_todos = True
-html_extra_path = ["_extra"]
-html_context = {
-    "email": "jean.pierre@chauvel.org",
-}
-custom_css = "css/custom.css"
+html_static_path: list[str] = ["_static"]
+todo_include_todos: bool = True
+html_extra_path: list[str] = ["_extra"]
+custom_css: str = "css/custom.css"
 
 
 # -- Options for autosummary/autodoc output -----------------------------------
-autosummary_generate = True
-autodoc_typehints = "description"
-autodoc_member_order = "groupwise"
+autosummary_generate: bool = True
+autodoc_typehints: str = "description"
+autodoc_member_order: str = "groupwise"
 
 # -- Options for sitemap ------------------------------------------------------
-html_baseurl = "https://www.chauvel.org/"
-sitemap_url_scheme = "{link}"
-sitemap_locales = [None]
+html_baseurl: str = "https://www.chauvel.org/"
+sitemap_url_scheme: str = "{link}"
+sitemap_locales: list[None] = [None]
 
 # -- Options for favicon ------------------------------------------------------
-favicons = [
+favicons: list[dict[str, str]] = [
     {"href": "favicon/favicon-16x16.gif"},
     {"href": "favicon/favicon-32x32.gif"},
     {"href": "favicon/favicon-48x48.gif"},
@@ -244,9 +244,9 @@ favicons = [
 
 # -- Options for OpenGraph ----------------------------------------------------
 
-ogp_site_url = "https://www.chauvel.org"
-ogp_enable_meta_description = True
-ogp_social_cards = {
+ogp_site_url: str = "https://www.chauvel.org"
+ogp_enable_meta_description: bool = True
+ogp_social_cards: dict[str, str] = {
     "line_color": "#4078c0",
     "image": "_static/logo/hellhound-profile.gif",
 }
@@ -254,25 +254,25 @@ ogp_social_cards = {
 # -- Custom Sphinx app setup to hook after the build is finished --------------
 
 
-def setup(app):
+def setup(app) -> None:
     app.connect("builder-inited", build_inited_handler)
     app.connect("build-finished", build_finsihed_handler)
     app.add_css_file(custom_css)
 
 
-def build_inited_handler(app):
-    confdir = find_confdir()
+def build_inited_handler(app) -> None:
+    confdir: Any | str = find_confdir()
     conf = read_conf(confdir)
-    website = os.path.join(
+    website: str = os.path.join(
         confdir, getattr(conf, "ablog_builddir", "_website")
     )
-    blog = os.path.join(website, getattr(conf, "ablog_path", "blog"))
-    lite = os.path.join(blog, "lite")
+    blog: str = os.path.join(website, getattr(conf, "ablog_path", "blog"))
+    lite: str = os.path.join(blog, "lite")
     shutil.rmtree(lite, ignore_errors=True)
 
 
-def build_finsihed_handler(app, exception):
-    confdir = find_confdir()
+def build_finsihed_handler(app, exception) -> None:
+    confdir: Any | str = find_confdir()
     conf = read_conf(confdir)
     website = os.path.join(
         confdir, getattr(conf, "ablog_builddir", "_website")
