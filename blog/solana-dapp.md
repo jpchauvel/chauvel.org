@@ -28,9 +28,9 @@ selected Solana as a platform to build our dApp on.
 
 ## The Proof-of-Concept dApp
 
-I created a simple dApp consisted of an Anchor-based (written in Rust) Solana
-Program and an AnchorPy client that was used to interact with the Solana
-Program.  The smart contract (Solana Program) was design to only write a message
+I created a simple dApp consisted of an Anchor-based a Solana Program (written
+in Rust) and an AnchorPy client that was used to interact with the Solana
+Program. The smart contract (Solana Program) was design to only write a message
 into a Solana account using a concept known as PDA (Program Derived Address).
 
 ### What is a Program Derived Address?
@@ -267,8 +267,8 @@ async def async_main(message: str, nonce: int) -> None:
 
 **PDA Derivation and Management**: Central to the script's functionality is its
 ability to derive and manage PDAs. Using functions like `derive_pda()`, it
-calculates the PDA based on a seed, user public key, and nonce, ensuring unique
-and consistent address generation. The script transitions from addressing
+calculates the PDA based on a seed prefix, user public key, and nonce, ensuring
+unique and consistent address generation. The script transitions from addressing
 routines to executing actions:
 
 ```python
@@ -421,7 +421,7 @@ async def check_and_create_or_update_pda(
 ```
 
 **Intuitive CLI**: The AnchorPy Client is wrapped in a command-line interface
-using Typer. This design allows to execute operations directly from their
+using Typer. This design allows to execute operations directly from the
 terminal, simply by providing messages and nonce values as input arguments. It
 reduces the need for intricate code management and makes the script accessible
 to a broader audience.
