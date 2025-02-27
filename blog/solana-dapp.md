@@ -31,7 +31,7 @@ selected Solana as a platform to build our dApp on.
 I created a simple dApp consisted of an Anchor-based (written in Rust) Solana
 Program and an AnchorPy client that was used to interact with the Solana
 Program.  The smart contract (Solana Program) was design to only write a message
-into a Solana account using a concept know as PDA (Program Derived Address).
+into a Solana account using a concept known as PDA (Program Derived Address).
 
 ### What is a Program Derived Address?
 
@@ -286,10 +286,10 @@ async def derive_pda(program: Program, nonce: int) -> Pubkey:
 ```
 
 
-- **Account Creation**: The `create_pda()` function allows developers to
-  instantiate new PDA accounts, initializing them with a stored message. This
-feature is pivotal for applications that depend on storing and retrieving user
-or application data on the blockchain.
+- **Account Creation**: The `create_pda()` function instantiates new PDA
+  accounts, initializing them with a stored message. This feature is pivotal for
+applications that depend on storing and retrieving user or application data on
+the blockchain.
 
 ```python
 async def create_pda(program: Program, nonce: int, message: str) -> None:
@@ -316,9 +316,9 @@ async def create_pda(program: Program, nonce: int, message: str) -> None:
 ```
 
 - **Dynamic Updating**: With the `update_pda()` function, the script simplifies
-  updating existing PDA data. It intelligently checks the current data size and
-resizes the PDA storage dynamically if necessary, ensuring efficient use of
-resources and effortless data management.
+  updating existing PDA data. It checks the current data size and resizes the
+PDA storage dynamically if necessary, ensuring efficient use of resources and
+effortless data management.
 
 ```python
 async def update_pda(program: Program, nonce: int, new_message: str) -> None:
