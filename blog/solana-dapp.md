@@ -28,10 +28,10 @@ selected Solana as a platform to build our dApp on.
 
 ## The Proof-of-Concept dApp
 
-I created a simple dApp consisted of an Anchor-based a Solana Program (written
-in Rust) and an AnchorPy client that was used to interact with the Solana
-Program. The smart contract (Solana Program) was design to only write a message
-into a Solana account using a concept known as PDA (Program Derived Address).
+I created a simple dApp consisted of an Anchor-based Solana Program (written in
+Rust) and an AnchorPy client that was used to interact with the Solana Program.
+The smart contract (Solana Program) was design to only write a message into a
+Solana account using a concept known as PDA (Program Derived Address).
 
 ### What is a Program Derived Address?
 
