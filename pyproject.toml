@@ -5,7 +5,7 @@ description = "Jean-Pierre Chauvel's Blog"
 authors = ["Jean-Pierre Chauvel <jean.p.chauvel@gmail.com>"]
 license = "CC0"
 readme = "README.md"
-packages = [{include = "chauvel"}]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.14"
