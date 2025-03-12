@@ -274,14 +274,13 @@ def build_inited_handler(app) -> None:
     )
     blog: str = os.path.join(website, getattr(conf, "ablog_path", "blog"))
     lite: str = os.path.join(blog, "lite")
-    pyodide_chat_gpt_in_blog: str = os.path.join(blog, "pyodide-chat-gpt")
-    pyodide_chat_gpt: str = os.path.join(confdir, "pyodide-chat-gpt")
+    pyodide_chat_gpt: str = os.path.join(blog, "pyodide-chat-gpt")
 
     # Remove the lite directory
     shutil.rmtree(lite, ignore_errors=True)
 
     # Remove the pyodide-chat-gpt directory
-    shutil.rmtree(pyodide_chat_gpt_in_blog, ignore_errors=True)
+    shutil.rmtree(pyodide_chat_gpt, ignore_errors=True)
 
     # Build pyodide-chat-gpt
     os.system("./bin/build-pyodide-chat-gpt.sh")
@@ -298,7 +297,11 @@ def build_finsihed_handler(app, exception) -> None:
     pyodide_chat_gpt: str = os.path.join(confdir, "pyodide-chat-gpt", "build")
 
     # Move the lite directory
-    shutil.copytree(lite, os.path.join(blog, "lite"))
+    shutil.copytree(lite, os.path.join(blog, "lite"), dirs_exist_ok=True)
 
     # Move the pyodide-chat-gpt directory
-    shutil.copytree(pyodide_chat_gpt, os.path.join(blog, "pyodide-chat-gpt"))
+    shutil.copytree(
+        pyodide_chat_gpt,
+        os.path.join(blog, "pyodide-chat-gpt"),
+        dirs_exist_ok=True,
+    )
