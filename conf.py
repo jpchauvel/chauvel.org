@@ -283,7 +283,7 @@ def build_inited_handler(app) -> None:
     shutil.rmtree(pyodide_chat_gpt, ignore_errors=True)
 
     # Build pyodide-chat-gpt
-    os.system("./bin/build-pyodide-chat-gpt.sh")
+    os.system("./bin/build.pyodide-chat-gpt.sh")
 
 
 def build_finsihed_handler(app, exception) -> None:
