@@ -10,6 +10,7 @@ import os
 import shutil
 import sys
 from pathlib import Path
+import subprocess
 from typing import Any
 
 from ablog.commands import find_confdir, read_conf
@@ -274,16 +275,17 @@ def build_inited_handler(app) -> None:
     )
     blog: str = os.path.join(website, getattr(conf, "ablog_path", "blog"))
     lite: str = os.path.join(blog, "lite")
-    pyodide_chat_gpt: str = os.path.join(blog, "pyodide-chat-gpt")
+    pyodide_chat_gpt_in_blog: str = os.path.join(blog, "pyodide-chat-gpt")
+    pyodide_chat_gpt: str = os.path.join(confdir, "pyodide-chat-gpt")
 
     # Remove the lite directory
     shutil.rmtree(lite, ignore_errors=True)
 
     # Remove the pyodide-chat-gpt directory
-    shutil.rmtree(pyodide_chat_gpt, ignore_errors=True)
+    shutil.rmtree(pyodide_chat_gpt_in_blog, ignore_errors=True)
 
     # Build pyodide-chat-gpt
-    os.system("./bin/build.pyodide-chat-gpt.sh")
+    subprocess.run(["make", "-C", pyodide_chat_gpt, "all"], check=True)
 
 
 def build_finsihed_handler(app, exception) -> None:
