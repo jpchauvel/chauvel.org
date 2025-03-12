@@ -1,0 +1,3 @@
+[submodule "pyodide-chat-gpt"]
+	path = pyodide-chat-gpt
+	url = git@github.com:jpchauvel/pyodide-chat-gpt.git
