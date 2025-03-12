@@ -10,6 +10,8 @@ language: English
 
 # Creating a Pyodide-Powered GPT-3.5 Turbo Chat Application: A Proof-of-Concept
 
+![OpenAI](/_static/images/openai.png){ align=center width=400px }
+
 Building a web-based application that leverages both the Python environment and
 OpenAI's GPT-3.5 Turbo language model can be an exciting endeavor. This article
 walks through the creation of a proof-of-concept chat application using
