@@ -8,10 +8,8 @@ https://www.sphinx-doc.org/en/master/usage/configuration.html
 # -- Path setup --------------------------------------------------------------
 import os
 import shutil
-import subprocess
 import sys
 from pathlib import Path
-from turtle import shearfactor
 from typing import Any
 
 from ablog.commands import find_confdir, read_conf
@@ -286,9 +284,7 @@ def build_inited_handler(app) -> None:
     shutil.rmtree(pyodide_chat_gpt_in_blog, ignore_errors=True)
 
     # Build pyodide-chat-gpt
-    subprocess.run(
-        ["make", "-C", pyodide_chat_gpt, "all"], check=True, shell=True
-    )
+    os.system("./bin/build-pyodide-chat-gpt.sh")
 
 
 def build_finsihed_handler(app, exception) -> None:
