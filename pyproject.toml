@@ -10,7 +10,7 @@ package-mode = false
 [tool.poetry.dependencies]
 python = ">=3.9,<3.14"
 Sphinx = "^7.2.6"
-myst-parser = {extras = ["linkify"], version = "^2.0.0"}
+myst-parser = {extras = ["linkify"], version = "^3.0.1"}
 linkify = "^1.4"
 pydata-sphinx-theme = "^0.15.2"
 ablog = "^0.11.6"
