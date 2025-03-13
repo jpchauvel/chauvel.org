@@ -10,7 +10,6 @@ import os
 import shutil
 import sys
 from pathlib import Path
-import subprocess
 from typing import Any
 
 from ablog.commands import find_confdir, read_conf
@@ -277,6 +276,7 @@ def build_inited_handler(app) -> None:
     lite: str = os.path.join(blog, "lite")
     pyodide_chat_gpt_in_blog: str = os.path.join(blog, "pyodide-chat-gpt")
     pyodide_chat_gpt: str = os.path.join(confdir, "pyodide-chat-gpt")
+    pyodide_chat_gpt_build: str = os.path.join(pyodide_chat_gpt, "build")    
 
     # Remove the lite directory
     shutil.rmtree(lite, ignore_errors=True)
@@ -284,8 +284,14 @@ def build_inited_handler(app) -> None:
     # Remove the pyodide-chat-gpt directory
     shutil.rmtree(pyodide_chat_gpt_in_blog, ignore_errors=True)
 
+    # Remove the pyodide-chat-gpt build directory
+    shutil.rmtree(pyodide_chat_gpt_build, ignore_errors=True)
+
     # Build pyodide-chat-gpt
-    subprocess.run(["make", "-C", pyodide_chat_gpt, "all"], check=True)
+    os.system(f"""
+    (cd {pyodide_chat_gpt} && \
+    flet build --base-url blog/pyodide-chat-gpt web)
+    """)
 
 
 def build_finsihed_handler(app, exception) -> None:
@@ -296,7 +302,9 @@ def build_finsihed_handler(app, exception) -> None:
     )
     blog = os.path.join(website, getattr(conf, "ablog_path", "blog"))
     lite = os.path.join(website, "lite")
-    pyodide_chat_gpt: str = os.path.join(confdir, "pyodide-chat-gpt", "build")
+    pyodide_chat_gpt: str = os.path.join(
+        confdir, "pyodide-chat-gpt", "build", "web"
+    )
 
     # Move the lite directory
     shutil.copytree(lite, os.path.join(blog, "lite"), dirs_exist_ok=True)
