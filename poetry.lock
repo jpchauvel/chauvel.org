@@ -1867,27 +1867,58 @@ test = ["pytest", "pytest-console-scripts (>=1.4.0)", "pytest-cov", "pytest-html
 
 [[package]]
 name = "jupyterlite-sphinx"
-version = "0.13.1"
+version = "0.19.1"
 description = "Sphinx extension for deploying JupyterLite"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "jupyterlite_sphinx-0.13.1-py3-none-any.whl", hash = "sha256:3b166717e914060be8401a2c0d86f6c22d8f1f0c4427783f586d6f7ee6806e89"},
-    {file = "jupyterlite_sphinx-0.13.1.tar.gz", hash = "sha256:6a34e7f5d69155e0b2208de79cb0be2e913085047d784353cfa4f112e1872169"},
+    {file = "jupyterlite_sphinx-0.19.1-py3-none-any.whl", hash = "sha256:0eee482144df992586f52f3b381999100381c11c2e0ddaa196d2934704e8992f"},
+    {file = "jupyterlite_sphinx-0.19.1.tar.gz", hash = "sha256:758941390e5f53fc635bcda9d95a1dcd77cdd3268b91fe687c55d51790b02ffe"},
 ]
 
 [package.dependencies]
 docutils = "*"
 jupyter-server = "*"
 jupyterlab-server = "*"
-jupyterlite-core = ">=0.2,<0.3"
+jupyterlite-core = ">=0.2,<0.6"
+jupytext = "*"
 nbformat = "*"
 sphinx = ">=4"
 
 [package.extras]
 dev = ["hatch"]
-docs = ["jupyterlite-xeus (>=0.1.8,<0.2.0)", "myst-parser", "pydata-sphinx-theme"]
+docs = ["jupyterlite-xeus (>=0.1.8,<4)", "myst-parser", "pydata-sphinx-theme"]
+
+[[package]]
+name = "jupytext"
+version = "1.16.7"
+description = "Jupyter notebooks as Markdown documents, Julia, Python or R scripts"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "jupytext-1.16.7-py3-none-any.whl", hash = "sha256:912f9d9af7bd3f15470105e5c5dddf1669b2d8c17f0c55772687fc5a4a73fe69"},
+    {file = "jupytext-1.16.7.tar.gz", hash = "sha256:fc4e97f0890e22062c4ef10313c7ca960b07b3767246a1fef7585888cc2afe5d"},
+]
+
+[package.dependencies]
+markdown-it-py = ">=1.0"
+mdit-py-plugins = "*"
+nbformat = "*"
+packaging = "*"
+pyyaml = "*"
+tomli = {version = "*", markers = "python_version < \"3.11\""}
+
+[package.extras]
+dev = ["autopep8", "black", "flake8", "gitpython", "ipykernel", "isort", "jupyter-fs (>=1.0)", "jupyter-server (!=2.11)", "nbconvert", "pre-commit", "pytest", "pytest-cov (>=2.6.1)", "pytest-randomly", "pytest-xdist", "sphinx (<8)", "sphinx-gallery (<0.8)"]
+docs = ["myst-parser", "sphinx", "sphinx-copybutton", "sphinx-rtd-theme"]
+test = ["pytest", "pytest-randomly", "pytest-xdist"]
+test-cov = ["ipykernel", "jupyter-server (!=2.11)", "nbconvert", "pytest", "pytest-cov (>=2.6.1)", "pytest-randomly", "pytest-xdist"]
+test-external = ["autopep8", "black", "flake8", "gitpython", "ipykernel", "isort", "jupyter-fs (>=1.0)", "jupyter-server (!=2.11)", "nbconvert", "pre-commit", "pytest", "pytest-randomly", "pytest-xdist", "sphinx (<8)", "sphinx-gallery (<0.8)"]
+test-functional = ["pytest", "pytest-randomly", "pytest-xdist"]
+test-integration = ["ipykernel", "jupyter-server (!=2.11)", "nbconvert", "pytest", "pytest-randomly", "pytest-xdist"]
+test-ui = ["calysto-bash"]
 
 [[package]]
 name = "keyring"
@@ -5153,4 +5184,4 @@ cffi = ["cffi (>=1.11)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.9,<3.14"
-content-hash = "9a04002b0947452c92aa4a9b609ad618e20e67980b09fc6452a5bb4f027f1f93"
+content-hash = "97fadf00b2470eaaa5a85b80c57a6125963076fc524166c1cb67e8ec4862b6a6"
