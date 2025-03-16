@@ -66,6 +66,7 @@ exclude_patterns: list[str] = [
     "environment.yaml",
     "notebooks",
     "pyodide-chat-gpt",
+    ".venv",
 ]
 
 # -- MyST options ------------------------------------------------------------

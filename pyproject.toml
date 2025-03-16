@@ -1,45 +1,40 @@
-[tool.poetry]
-name = "chauvel-org"
-version = "0.1.0"
-description = "Jean-Pierre Chauvel's Blog"
-authors = ["Jean-Pierre Chauvel <jean.p.chauvel@gmail.com>"]
-license = "CC0"
-readme = "README.md"
-package-mode = false
-
-[tool.poetry.dependencies]
-python = ">=3.9,<3.14"
-Sphinx = "^7.2.6"
-myst-parser = {extras = ["linkify"], version = "^2.0.0"}
-linkify = "^1.4"
-pydata-sphinx-theme = "^0.15.2"
-ablog = "^0.11.6"
-sphinx-design = "^0.5.0"
-sphinx-copybutton = "^0.5.2"
-sphinx-togglebutton = "^0.3.2"
-sphinxcontrib-youtube = "^1.4.1"
-sphinx-sitemap = "^2.5.1"
-jupyterlite-sphinx = "^0.13.1"
-jupyterlite-pyodide-kernel = "<3.0.0"
-sphinx-favicon = "^1.0.1"
-libgravatar = "^1.0.4"
-sphinxext-opengraph = "^0.9.1"
-matplotlib = "^3.8.4"
-flet = "0.27.6"
-
-
-[tool.poetry.group.dev.dependencies]
-poetry-plugin-export = "^1.7.1"
-black = "^25.1.0"
-isort = "^6.0.1"
-flet = {version = "0.27.6", extras = ["all"]}
-
-[tool.poetry.requires-plugins]
-poetry-plugin-export = ">=1.8"
-
 [tool.black]
 line-length = 79
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[project]
+authors = [
+    {name = "Jean-Pierre Chauvel", email = "jean.p.chauvel@gmail.com"},
+]
+license = {text = "CC0"}
+requires-python = "<3.14,>=3.9"
+dependencies = [
+    "Sphinx<8.0.0,>=7.2.6",
+    "myst-parser[linkify]<3.0.0,>=2.0.0",
+    "linkify<2.0,>=1.4",
+    "pydata-sphinx-theme<1.0.0,>=0.15.2",
+    "ablog<1.0.0,>=0.11.6",
+    "sphinx-design<1.0.0,>=0.5.0",
+    "sphinx-copybutton<1.0.0,>=0.5.2",
+    "sphinx-togglebutton<1.0.0,>=0.3.2",
+    "sphinxcontrib-youtube<2.0.0,>=1.4.1",
+    "sphinx-sitemap<3.0.0,>=2.5.1",
+    "jupyterlite-sphinx<1.0.0,>=0.13.1",
+    "jupyterlite-pyodide-kernel<3.0.0",
+    "sphinx-favicon<2.0.0,>=1.0.1",
+    "libgravatar<2.0.0,>=1.0.4",
+    "sphinxext-opengraph<1.0.0,>=0.9.1",
+    "matplotlib<4.0.0,>=3.8.4",
+    "flet==0.27.6",
+]
+name = "chauvel-org"
+version = "0.1.0"
+description = "Jean-Pierre Chauvel's Blog"
+readme = "README.md"
+package-mode = false
+
+[dependency-groups]
+dev = [
+    "black<26.0.0,>=25.1.0",
+    "isort<7.0.0,>=6.0.1",
+    "flet[all]==0.27.6",
+]
