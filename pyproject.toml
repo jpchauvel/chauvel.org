@@ -24,7 +24,7 @@ dependencies = [
     "libgravatar<2.0.0,>=1.0.4",
     "sphinxext-opengraph<1.0.0,>=0.9.1",
     "matplotlib<4.0.0,>=3.8.4",
-    "flet==0.27.6",
+    "flet==0.28.3",
 ]
 name = "chauvel-org"
 version = "0.1.0"
