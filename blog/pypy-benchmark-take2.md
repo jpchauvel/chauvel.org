@@ -10,7 +10,7 @@ language: English
 
 # Benchmarking Python Flavors: PyPy, CPython (standard / free-threaded / jit), Cython & Numba
 
-Now that Python 3.14 is out, let's compare how CPython fares against Pypy!
+Now that Python 3.14 is out, let's compare how CPython fares against PyPy!
 Python has many implementations and optimization tools. This
 [repository](https://github.com/jpchauvel/pypy-test2) contains a focused
 benchmarking suite that compares several of them across three workload classes
