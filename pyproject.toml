@@ -6,7 +6,7 @@ authors = [
     {name = "Jean-Pierre Chauvel", email = "jean.p.chauvel@gmail.com"},
 ]
 license = {text = "CC0"}
-requires-python = "<3.14,>=3.9"
+requires-python = "<3.15,>=3.10"
 dependencies = [
     "Sphinx<8.0.0,>=7.2.6",
     "myst-parser[linkify]>=2.0.0,<4.0.0",
@@ -24,7 +24,7 @@ dependencies = [
     "libgravatar<2.0.0,>=1.0.4",
     "sphinxext-opengraph<1.0.0,>=0.9.1",
     "matplotlib<4.0.0,>=3.8.4",
-    "flet==0.27.6",
+    "flet==0.28.3",
 ]
 name = "chauvel-org"
 version = "0.1.0"
@@ -34,7 +34,7 @@ package-mode = false
 
 [dependency-groups]
 dev = [
-    "black<26.0.0,>=25.1.0",
-    "isort<7.0.0,>=6.0.1",
-    "flet[all]==0.27.6",
+    "black<=26.0.0,>=25.1.0",
+    "isort<=7.0.0,>=6.0.1",
+    "flet[all]==0.28.3",
 ]
