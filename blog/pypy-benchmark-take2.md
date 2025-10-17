@@ -80,7 +80,7 @@ experience warmup effects unless the suite is invoked repeatedly.
 
 - PyPy (tracing JIT)
   - Excels on long-running, pure-Python compute workloads where hot loops are
-  stable (often multiple× faster than CPython for these cases after warmup).
+  stable (often multiple x faster than CPython for these cases after warmup).
   - Warmup matters: initial runs may be slower until the tracer optimizes hot
   paths.
   - C-extension compatibility is more limited than CPython, so Cython/Numba
