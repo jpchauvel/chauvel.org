@@ -182,7 +182,3 @@ memoryviews.
 - For parallel CPU-bound tasks, choose process-based parallelism on standard
 CPython, or try a free-threaded CPython build when true threaded parallelism is
 required and compatible with your extensions.
-
-If you want raw results turned into a short comparison table or a single-run
-JSON extracted from `results/`, tell me which flavors you ran and I’ll
-summarize the numbers.
