@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /lite/
+
+User-agent: *
+Disallow: /blog/lite/
+
+User-agent: *
+Disallow: /genindex/
+
+User-agent: *
+Disallow: /blog/pyodide-chat-gpt/
+
+Sitemap: https://chauvel.org/sitemap.xml
+Sitemap: https://www.chauvel.org/sitemap.xml

@@ -1,0 +1,1470 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../../_static/favicon/favicon-16x16.gif" sizes="16x11" rel="icon" type="image/gif">
+    <link href="../../_static/favicon/favicon-32x32.gif" sizes="32x22" rel="icon" type="image/gif">
+    <link href="../../_static/favicon/favicon-48x48.gif" sizes="48x34" rel="icon" type="image/gif">
+    <link rel="apple-touch-icon" href="../../_static/favicon/favicon-180x180.gif" sizes="180x126" type="image/gif"><meta property="og:title" content="Creating a Simple Solana dApp with Anchor and AnchorPy" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.chauvel.org/blog/solana-dapp/" />
+<meta property="og:site_name" content="hellhound ©" />
+<meta property="og:description" content="Solana Me and a couple of friends decided to embark on a project related to the Solana blockchain. Long story short, I managed to create a simple dApp using Anchor and AnchorPy. Why Solana?: Solana..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.chauvel.org/_images/social_previews/summary_blog_solana-dapp_16749778.png" />
+<meta property="og:image:alt" content="Solana Me and a couple of friends decided to embark on a project related to the Solana blockchain. Long story short, I managed to create a simple dApp using Anchor and AnchorPy. Why Solana?: Solana..." />
+<meta name="description" content="Solana Me and a couple of friends decided to embark on a project related to the Solana blockchain. Long story short, I managed to create a simple dApp using Anchor and AnchorPy. Why Solana?: Solana..." />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <title>Creating a Simple Solana dApp with Anchor and AnchorPy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Vibur" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyterlite_sphinx.css?v=8ee2c72c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=fd0dedbb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=a054288e"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/jupyterlite_sphinx.js?v=96e329c5"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-F0WV9RGJW0"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-F0WV9RGJW0');
+            </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-F0WV9RGJW0');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'blog/solana-dapp';</script>
+    <link rel="canonical" href="https://www.chauvel.org/blog/solana-dapp/" />
+    <link rel="author" title="About these documents" href="../../about/" />
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+<meta name="robots" content="follow, index">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="Oct 21, 2025"/> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="hellhound ©"
+/>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/hellhound.gif" class="logo__image only-light" alt=" - Home"/>
+    <img src="../../_static/hellhound.gif" class="logo__image only-dark pst-js-only" alt=" - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about/">
+    About me
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../">
+    Blog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/hellhoundorf" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-x-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.instagram.com/hellhoundorf" title="Instagram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-instagram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Instagram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://youtube.com/@hellhoundorf" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-youtube fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://wa.me/+51989804478" title="WhatsApp" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-whatsapp fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">WhatsApp</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://linkedin.com/in/jpchauvel" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jpchauvel" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://stackoverflow.com/users/434423/jean-pierre-chauvel" title="Stack Overflow" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-stack-overflow fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Stack Overflow</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.fiverr.com/s/2K0Wmwk" title="Fiverr" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="https://fiverr-res.cloudinary.com/npm-assets/layout-service/favicon-32x32.8f21439.png" class="icon-link-image" alt="Fiverr"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://python.pe" title="Python Perú" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-python fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Python Perú</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.chauvel.org/blog/atom.xml" title="Blog RSS feed" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Blog RSS feed</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about/">
+    About me
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../">
+    Blog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/hellhoundorf" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-x-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.instagram.com/hellhoundorf" title="Instagram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-instagram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Instagram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://youtube.com/@hellhoundorf" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-youtube fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://wa.me/+51989804478" title="WhatsApp" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-whatsapp fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">WhatsApp</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://linkedin.com/in/jpchauvel" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jpchauvel" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://stackoverflow.com/users/434423/jean-pierre-chauvel" title="Stack Overflow" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-stack-overflow fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Stack Overflow</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.fiverr.com/s/2K0Wmwk" title="Fiverr" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="https://fiverr-res.cloudinary.com/npm-assets/layout-service/favicon-32x32.8f21439.png" class="icon-link-image" alt="Fiverr"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://python.pe" title="Python Perú" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-python fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Python Perú</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.chauvel.org/blog/atom.xml" title="Blog RSS feed" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Blog RSS feed</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <i class="fa fa-calendar"></i>
+    
+    <span>27 February 2025</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+      
+      <i class="fa-fw fa fa-user"></i>
+      
+    </span>
+     
+    <a href="../author/jean-pierre-chauvel/">Jean-Pierre Chauvel</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item location ablog__location">
+    <span>
+      
+      <i class="fa-fw fa fa-location-arrow"></i>
+      
+    </span>
+     
+    <a href="../location/lima/">Lima</a>
+     ,    
+    <a href="../location/peru/">Perú</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+      
+      <i class="fa-fw fa fa-language"></i>
+      
+    </span>
+     
+    <a href="../language/english/">English</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+      
+      <i class="fa-fw fa fa-folder-open"></i>
+      
+    </span>
+     
+    <a href="../category/blockchain/">Blockchain</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+       
+      <i class="fa-fw fa fa-tags"></i>
+       
+    </span>
+     
+    <a href="../tag/blockchain/">blockchain</a>
+        
+    <a href="../tag/solana/">solana</a>
+        
+    <a href="../tag/dapp/">dapp</a>
+        
+    <a href="../tag/anchor/">anchor</a>
+        
+    <a href="../tag/anchorpy/">anchorpy</a>
+        
+    <a href="../tag/rust/">rust</a>
+        
+    <a href="../tag/python/">python</a>
+      
+  </li>
+   
+</div>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../">Recent Posts</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../pypy-benchmark-take2/">
+        16 October - Benchmarking Python Flavors: PyPy, CPython (standard / free-threaded / jit), Cython & Numba
+      </a>
+    </li>
+    
+    <li>
+      <a href="../making-pyodide-powered-gpt-chat-app/">
+        12 March - Creating a Pyodide-Powered GPT-3.5 Turbo Chat Application: A Proof-of-Concept
+      </a>
+    </li>
+    
+    <li>
+      <a href="../pypy-benchmark/">
+        13 May - Exploring Python Performance: PyPy vs CPython vs Numba
+      </a>
+    </li>
+    
+    <li>
+      <a href="../modernizing-vim/">
+        29 April - Modernizing Vim: Transforming it into a Powerhouse IDE Comparable to VSCode!
+      </a>
+    </li>
+    
+    <li>
+      <a href="../chat-server-app/">
+        24 April - Creating Your Own Small Scale Application Server Using PubSub Pattern
+      </a>
+    </li>
+    
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__archives">
+  <h3>
+    <a href="../archive/">Archives</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../2025/">2025 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../2024/">2024 (8)</a>
+    </li>
+     
+  </ul>
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Creating a Simple Solana dApp with Anchor and AnchorPy</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="creating-a-simple-solana-dapp-with-anchor-and-anchorpy">
+<h1>Creating a Simple Solana dApp with Anchor and AnchorPy<a class="headerlink" href="#creating-a-simple-solana-dapp-with-anchor-and-anchorpy" title="Link to this heading">#</a></h1>
+<p><a class="reference internal" href="../../_images/solana.png"><img alt="Solana" class="align-center" src="../../_images/solana.png" style="width: 400px;" /></a></p>
+<p>Me and a couple of friends decided to embark on a project related to the Solana
+blockchain. Long story short, I managed to create a simple dApp using Anchor and
+AnchorPy.</p>
+<section id="why-solana">
+<h2>Why Solana?<a class="headerlink" href="#why-solana" title="Link to this heading">#</a></h2>
+<p>Solana is a blockchain platform that is built on top of the Solana runtime. It
+is a high-performance blockchain that is designed to be used for building
+decentralized applications.</p>
+<p>Transactions on Solana take on average 400ms, which is a lot faster than other
+blockchains like Ethereum. That’s one of the key factors why we, as a team,
+selected Solana as a platform to build our dApp on.</p>
+</section>
+<section id="the-proof-of-concept-dapp">
+<h2>The Proof-of-Concept dApp<a class="headerlink" href="#the-proof-of-concept-dapp" title="Link to this heading">#</a></h2>
+<p>I created a simple dApp consisted of an Anchor-based Solana Program (written in
+Rust) and an AnchorPy client that was used to interact with the Solana Program.
+The smart contract (Solana Program) was design to only write a message into a
+Solana account using a concept known as PDA (Program Derived Address).</p>
+<section id="what-is-a-program-derived-address">
+<h3>What is a Program Derived Address?<a class="headerlink" href="#what-is-a-program-derived-address" title="Link to this heading">#</a></h3>
+<p>Program Derived Addresses (PDAs) provide developers on Solana with two main use
+cases:</p>
+<ul class="simple">
+<li><p><strong>Deterministic Account Addresses</strong>: PDAs provide a mechanism to
+deterministically derive an address using a combination of optional “seeds”
+(predefined inputs) and a specific program ID.</p></li>
+<li><p><strong>Enable Program Signing</strong>: The Solana runtime enables programs to “sign” for
+PDAs which are derived from its program ID.  You can think of PDAs as a way to
+create hashmap-like structures on-chain from a predefined set of inputs (e.g.
+strings, numbers, and other account addresses).</p></li>
+</ul>
+<p>The benefit of this approach is that it eliminates the need to keep track of an
+exact address. Instead, you simply need to recall the specific inputs used for
+its derivation.</p>
+<p><a class="reference internal" href="../../_images/pda.png"><img alt="PDA" class="align-center" src="../../_images/pda.png" style="width: 700px;" /></a></p>
+<p>It’s important to understand that simply deriving a Program Derived Address
+(PDA) does not automatically create an on-chain account at that address.
+Accounts with a PDA as the on-chain address must be explicitly created through
+the program used to derive the address. You can think of deriving a PDA as
+finding an address on a map. Just having an address does not mean there is
+anything built at that location.</p>
+<p>PDAs are addresses that are deterministically derived and look like standard
+public keys, but have no associated private keys. This means that no external
+user can generate a valid signature for the address. However, the Solana runtime
+enables programs to programmatically “sign” for PDAs without needing a private
+key.</p>
+<p>For context, Solana Keypairs are points on the Ed25519 curve (elliptic-curve
+cryptography) which have a public key and corresponding private key. We often
+use public keys as the unique IDs for new on-chain accounts and private keys for
+signing.</p>
+</section>
+</section>
+<section id="the-solana-program">
+<h2>The Solana Program<a class="headerlink" href="#the-solana-program" title="Link to this heading">#</a></h2>
+<p>The Solana Program is written in Rust and is a simple program that writes a
+message into a Solana account using a Program Derived Address (PDA). The message
+is a string that is passed as an argument to the program using the AnchorPy
+client (which I will cover next). The program resizes the PDA acocunt based on
+the length of the message and clears the previous content of the data (message)
+before writing the new one.</p>
+<p>This program is devided into three public functions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pub</span> <span class="pre">fn</span> <span class="pre">create_account(ctx:</span> <span class="pre">Context&lt;CreatePDA&gt;,</span> <span class="pre">nonce:</span> <span class="pre">u64,</span> <span class="pre">message:</span> <span class="pre">String)</span> <span class="pre">-&gt;</span> <span class="pre">Result&lt;()&gt;</span></code>:
+This function initializes the PDA account and writes the message into it.</p></li>
+</ul>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">create_account</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span><span class="w"> </span><span class="nc">Context</span><span class="o">&lt;</span><span class="n">CreatePDA</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">nonce</span><span class="p">:</span><span class="w"> </span><span class="kt">u64</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">pda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">accounts</span><span class="p">.</span><span class="n">pda_account</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pda</span><span class="p">.</span><span class="n">authority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">accounts</span><span class="p">.</span><span class="n">user</span><span class="p">.</span><span class="n">key</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pda</span><span class="p">.</span><span class="n">nonce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nonce</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pda</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">message</span><span class="p">.</span><span class="n">into_bytes</span><span class="p">();</span><span class="w"> </span><span class="c1">// Store the message in data</span>
+
+<span class="w">    </span><span class="n">msg</span><span class="o">!</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;Created PDA with message: {}&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nb">String</span><span class="p">::</span><span class="n">from_utf8_lossy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pda</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pub</span> <span class="pre">fn</span> <span class="pre">resize_account(ctx:</span> <span class="pre">Context&lt;ResizePDA&gt;,</span> <span class="pre">new_size:</span> <span class="pre">u64)</span> <span class="pre">-&gt;</span> <span class="pre">Result&lt;()&gt;</span></code>:
+This function resizes the PDA account based on the new size.</p></li>
+</ul>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">resize_account</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span><span class="w"> </span><span class="nc">Context</span><span class="o">&lt;</span><span class="n">ResizePDA</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">new_size</span><span class="p">:</span><span class="w"> </span><span class="kt">u64</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">account_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">accounts</span><span class="p">.</span><span class="n">pda_account</span><span class="p">.</span><span class="n">to_account_info</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">old_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">account_info</span><span class="p">.</span><span class="n">try_data_len</span><span class="p">()</span><span class="o">?</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">u64</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">new_data_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">32</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">new_size</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">u64</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">rent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rent</span><span class="p">::</span><span class="n">get</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">new_minimum_balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rent</span><span class="p">.</span><span class="n">minimum_balance</span><span class="p">(</span><span class="n">new_data_size</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">usize</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">new_data_size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">old_size</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">required_lamports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_minimum_balance</span><span class="p">.</span><span class="n">saturating_sub</span><span class="p">(</span><span class="n">account_info</span><span class="p">.</span><span class="n">lamports</span><span class="p">());</span>
+
+<span class="w">        </span><span class="c1">// Log current balances for inspection</span>
+<span class="w">        </span><span class="n">msg</span><span class="o">!</span><span class="p">(</span>
+<span class="w">            </span><span class="s">&quot;Current Authority Lamports: {}&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">ctx</span><span class="p">.</span><span class="n">accounts</span><span class="p">.</span><span class="n">authority</span><span class="p">.</span><span class="n">lamports</span><span class="p">()</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="n">msg</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;Current PDA Account Lamports: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">account_info</span><span class="p">.</span><span class="n">lamports</span><span class="p">());</span>
+<span class="w">        </span><span class="n">msg</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;Required for resize: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">required_lamports</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">required_lamports</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">require</span><span class="o">!</span><span class="p">(</span>
+<span class="w">                </span><span class="n">ctx</span><span class="p">.</span><span class="n">accounts</span><span class="p">.</span><span class="n">authority</span><span class="p">.</span><span class="n">lamports</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">required_lamports</span><span class="p">,</span>
+<span class="w">                </span><span class="n">ErrorCode</span><span class="p">::</span><span class="n">InsufficientFunds</span>
+<span class="w">            </span><span class="p">);</span>
+
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">cpi_accounts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Transfer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="nc">ctx</span><span class="p">.</span><span class="n">accounts</span><span class="p">.</span><span class="n">authority</span><span class="p">.</span><span class="n">to_account_info</span><span class="p">(),</span>
+<span class="w">                </span><span class="n">to</span><span class="p">:</span><span class="w"> </span><span class="nc">account_info</span><span class="p">.</span><span class="n">clone</span><span class="p">(),</span>
+<span class="w">            </span><span class="p">};</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">cpi_context</span><span class="w"> </span><span class="o">=</span>
+<span class="w">                </span><span class="n">CpiContext</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">ctx</span><span class="p">.</span><span class="n">accounts</span><span class="p">.</span><span class="n">system_program</span><span class="p">.</span><span class="n">to_account_info</span><span class="p">(),</span><span class="w"> </span><span class="n">cpi_accounts</span><span class="p">);</span>
+<span class="w">            </span><span class="n">system_program</span><span class="p">::</span><span class="n">transfer</span><span class="p">(</span><span class="n">cpi_context</span><span class="p">,</span><span class="w"> </span><span class="n">required_lamports</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+
+<span class="w">            </span><span class="n">msg</span><span class="o">!</span><span class="p">(</span>
+<span class="w">                </span><span class="s">&quot;After transfer Authority Lamports: {}&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">ctx</span><span class="p">.</span><span class="n">accounts</span><span class="p">.</span><span class="n">authority</span><span class="p">.</span><span class="n">lamports</span><span class="p">()</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">            </span><span class="n">msg</span><span class="o">!</span><span class="p">(</span>
+<span class="w">                </span><span class="s">&quot;After transfer PDA Account Lamports: {}&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">account_info</span><span class="p">.</span><span class="n">lamports</span><span class="p">()</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">new_data_size</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">old_size</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Resize smaller, refunding lamports</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">refund</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">account_info</span><span class="p">.</span><span class="n">lamports</span><span class="p">().</span><span class="n">saturating_sub</span><span class="p">(</span><span class="n">new_minimum_balance</span><span class="p">);</span>
+<span class="w">        </span><span class="o">**</span><span class="n">ctx</span><span class="p">.</span><span class="n">accounts</span><span class="p">.</span><span class="n">authority</span><span class="p">.</span><span class="n">try_borrow_mut_lamports</span><span class="p">()</span><span class="o">?</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">refund</span><span class="p">;</span>
+<span class="w">        </span><span class="o">**</span><span class="n">account_info</span><span class="p">.</span><span class="n">try_borrow_mut_lamports</span><span class="p">()</span><span class="o">?</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">refund</span><span class="p">;</span>
+<span class="w">        </span><span class="n">msg</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;Decreasing size, refunding lamports: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">refund</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">account_info</span><span class="p">.</span><span class="n">realloc</span><span class="p">(</span><span class="n">new_data_size</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">usize</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">pda_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">accounts</span><span class="p">.</span><span class="n">pda_account</span><span class="p">.</span><span class="n">data</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pda_data</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">new_size</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">usize</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">msg</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;Resized PDA from {} to {} bytes&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">old_size</span><span class="p">,</span><span class="w"> </span><span class="n">new_size</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pub</span> <span class="pre">fn</span> <span class="pre">update_data(ctx:</span> <span class="pre">Context&lt;UpdatePDA&gt;,</span> <span class="pre">new_message:</span> <span class="pre">String)</span> <span class="pre">-&gt;</span> <span class="pre">Result&lt;()&gt;)</span></code>:
+This function updates the data of the PDA account with the new message.</p></li>
+</ul>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">update_data</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span><span class="w"> </span><span class="nc">Context</span><span class="o">&lt;</span><span class="n">UpdatePDA</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">new_message</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">pda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">accounts</span><span class="p">.</span><span class="n">pda_account</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">new_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_message</span><span class="p">.</span><span class="n">into_bytes</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">require</span><span class="o">!</span><span class="p">(</span><span class="n">new_data</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">pda</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">len</span><span class="p">(),</span><span class="w"> </span><span class="n">ErrorCode</span><span class="p">::</span><span class="n">DataTooLarge</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">pda</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="w"> </span><span class="c1">// Clear the existing data</span>
+<span class="w">    </span><span class="n">pda</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">new_data</span><span class="p">);</span><span class="w"> </span><span class="c1">// Add new data</span>
+
+<span class="w">    </span><span class="n">msg</span><span class="o">!</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;Updated PDA with new message: {}&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nb">String</span><span class="p">::</span><span class="n">from_utf8_lossy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pda</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="the-pda-account">
+<h2>The PDA Account<a class="headerlink" href="#the-pda-account" title="Link to this heading">#</a></h2>
+<p>The PDA account contains the authority address, nonce, and data. The authority
+address is the public key of the user who created the PDA. The nonce is a
+counter that is incremented each time the PDA is resized. The data is the
+message that is stored in the PDA account.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[account]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">PDAAccount</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">authority</span><span class="p">:</span><span class="w"> </span><span class="nc">Pubkey</span><span class="p">,</span>
+<span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">nonce</span><span class="p">:</span><span class="w"> </span><span class="kt">u64</span><span class="p">,</span>
+<span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Stores the message as bytes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="the-createpda-context">
+<h2>The CreatePDA Context<a class="headerlink" href="#the-createpda-context" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">CreatePDA</span></code> context is used to create a new PDA account and write a message
+into it. This context is the main one, basically, because it contains the seed
+of the PDA account.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[derive(Accounts)]</span>
+<span class="cp">#[instruction(nonce: u64, message: String)]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">CreatePDA</span><span class="o">&lt;&#39;</span><span class="na">info</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cp">#[account(</span>
+<span class="cp">        init,</span>
+<span class="cp">        payer = user,</span>
+<span class="cp">        space = 8 + 32 + 8 + 4 + message.len(), // Base size + message size</span>
+<span class="cp">        seeds = [b</span><span class="s">&quot;my-seed&quot;</span><span class="cp">, user.key().as_ref(), &amp;nonce.to_le_bytes()],</span>
+<span class="cp">        bump</span>
+<span class="cp">    )]</span>
+<span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">pda_account</span><span class="p">:</span><span class="w"> </span><span class="nc">Account</span><span class="o">&lt;&#39;</span><span class="na">info</span><span class="p">,</span><span class="w"> </span><span class="n">PDAAccount</span><span class="o">&gt;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="cp">#[account(mut)]</span>
+<span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="nc">Signer</span><span class="o">&lt;&#39;</span><span class="na">info</span><span class="o">&gt;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">system_program</span><span class="p">:</span><span class="w"> </span><span class="nc">Program</span><span class="o">&lt;&#39;</span><span class="na">info</span><span class="p">,</span><span class="w"> </span><span class="n">System</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The seed is a combination of a constant byte string and the concatenation of the
+user’s public key and the nonce. The nonce is a counter that is incremented each
+time the PDA is resized. The message is the string that is passed as an argument
+to the program and is stored in the PDA account, which is used to reserve space
+for it.</p>
+</section>
+<section id="the-anchorpy-client">
+<h2>The AnchorPy Client<a class="headerlink" href="#the-anchorpy-client" title="Link to this heading">#</a></h2>
+<p>This script is designed to streamline the process of creating, managing, and
+retrieving data from PDAs, leveraging the capabilities of the AnchorPy
+framework.</p>
+<p><strong>Environment Setup and Configuration</strong>: The script sets up the necessary
+environment by loading key components of the Solana infrastructure. It connects
+to the Solana Devnet and utilizes a locally stored keypair for signing
+transactions, ensuring secure and authenticated blockchain interactions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PROJECT_PATH</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)),</span> <span class="s2">&quot;..&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">SEED_PREFIX</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;my-seed&quot;</span>
+<span class="n">DEVNET_URL</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://api.devnet.solana.com&quot;</span>
+
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">async_main</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Main function to handle Solana interactions.&quot;&quot;&quot;</span>
+    <span class="c1"># Load the Anchor program</span>
+    <span class="n">workspace</span><span class="p">:</span> <span class="n">WorkspaceType</span> <span class="o">=</span> <span class="n">create_workspace</span><span class="p">(</span><span class="n">PROJECT_PATH</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">DEVNET_URL</span><span class="p">)</span>
+    <span class="n">program</span><span class="p">:</span> <span class="n">Program</span> <span class="o">=</span> <span class="n">workspace</span><span class="p">[</span><span class="s2">&quot;resizable_pda&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Check if PDA exists; create or update accordingly</span>
+    <span class="k">await</span> <span class="n">check_and_create_or_update_pda</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">nonce</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+
+    <span class="c1"># Close the client connection</span>
+    <span class="k">await</span> <span class="n">close_workspace</span><span class="p">(</span><span class="n">workspace</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>PDA Derivation and Management</strong>: Central to the script’s functionality is its
+ability to derive and manage PDAs. Using functions like <code class="docutils literal notranslate"><span class="pre">derive_pda()</span></code>, it
+calculates the PDA based on a seed prefix, user public key, and nonce, ensuring
+unique and consistent address generation. The script transitions from addressing
+routines to executing actions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">derive_pda</span><span class="p">(</span><span class="n">program</span><span class="p">:</span> <span class="n">Program</span><span class="p">,</span> <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pubkey</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Derives the PDA address using the seed, user pubkey, and nonce.&quot;&quot;&quot;</span>
+    <span class="n">pda</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">Pubkey</span><span class="o">.</span><span class="n">find_program_address</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">SEED_PREFIX</span><span class="p">,</span>
+            <span class="nb">bytes</span><span class="p">(</span><span class="n">program</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">wallet</span><span class="o">.</span><span class="n">public_key</span><span class="p">),</span>
+            <span class="n">nonce</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;little&quot;</span><span class="p">),</span>
+        <span class="p">],</span>
+        <span class="n">program</span><span class="o">.</span><span class="n">program_id</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">pda</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Account Creation</strong>: The <code class="docutils literal notranslate"><span class="pre">create_pda()</span></code> function instantiates new PDA
+accounts, initializing them with a stored message. This feature is pivotal for
+applications that depend on storing and retrieving user or application data on
+the blockchain.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_pda</span><span class="p">(</span><span class="n">program</span><span class="p">:</span> <span class="n">Program</span><span class="p">,</span> <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a PDA account and stores the initial message.&quot;&quot;&quot;</span>
+    <span class="n">pda</span><span class="p">:</span> <span class="n">Pubkey</span> <span class="o">=</span> <span class="k">await</span> <span class="n">derive_pda</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">nonce</span><span class="p">)</span>
+
+    <span class="n">tx</span><span class="p">:</span> <span class="n">Signature</span> <span class="o">=</span> <span class="k">await</span> <span class="n">program</span><span class="o">.</span><span class="n">rpc</span><span class="p">[</span><span class="s2">&quot;create_account&quot;</span><span class="p">](</span>
+        <span class="n">nonce</span><span class="p">,</span>
+        <span class="n">message</span><span class="p">,</span>
+        <span class="n">ctx</span><span class="o">=</span><span class="n">Context</span><span class="p">(</span>
+            <span class="n">accounts</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;pda_account&quot;</span><span class="p">:</span> <span class="n">pda</span><span class="p">,</span>
+                <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">program</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">wallet</span><span class="o">.</span><span class="n">public_key</span><span class="p">,</span>
+                <span class="s2">&quot;system_program&quot;</span><span class="p">:</span> <span class="n">SYSTEM_PROGRAM_ID</span><span class="p">,</span>  <span class="c1"># System Program ID</span>
+            <span class="p">},</span>
+            <span class="n">signers</span><span class="o">=</span><span class="p">[</span><span class="n">user</span><span class="p">],</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PDA Created: </span><span class="si">{</span><span class="n">pda</span><span class="si">}</span><span class="s2"> | Transaction: </span><span class="si">{</span><span class="n">tx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Retrieve and print the stored message</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_pda_message</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">pda</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Dynamic Updating</strong>: With the <code class="docutils literal notranslate"><span class="pre">update_pda()</span></code> function, the script simplifies
+updating existing PDA data. It checks the current data size and resizes the
+PDA storage dynamically if necessary, ensuring efficient use of resources and
+effortless data management.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">update_pda</span><span class="p">(</span><span class="n">program</span><span class="p">:</span> <span class="n">Program</span><span class="p">,</span> <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">new_message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resizes the PDA (if necessary) and updates the stored message.&quot;&quot;&quot;</span>
+    <span class="n">pda</span><span class="p">:</span> <span class="n">Pubkey</span> <span class="o">=</span> <span class="k">await</span> <span class="n">derive_pda</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">nonce</span><span class="p">)</span>
+
+    <span class="c1"># Fetch the current PDA account data</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">account</span><span class="p">:</span> <span class="n">Container</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="n">program</span><span class="o">.</span><span class="n">account</span><span class="p">[</span><span class="s2">&quot;PDAAccount&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span>
+            <span class="n">pda</span>
+        <span class="p">)</span>
+        <span class="n">current_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">account</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">AccountDoesNotExistError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: PDA </span><span class="si">{</span><span class="n">pda</span><span class="si">}</span><span class="s2"> does not exist. Cannot update.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="n">new_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_message</span><span class="p">)</span>
+
+    <span class="c1"># Resize the PDA only if the new message is larger than the current storage</span>
+    <span class="k">if</span> <span class="n">new_size</span> <span class="o">&gt;</span> <span class="n">current_size</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Resizing PDA from </span><span class="si">{</span><span class="n">current_size</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">new_size</span><span class="si">}</span><span class="s2"> bytes...&quot;</span><span class="p">)</span>
+        <span class="n">tx_resize</span><span class="p">:</span> <span class="n">Signature</span> <span class="o">=</span> <span class="k">await</span> <span class="n">program</span><span class="o">.</span><span class="n">rpc</span><span class="p">[</span><span class="s2">&quot;resize_account&quot;</span><span class="p">](</span>
+            <span class="n">new_size</span><span class="p">,</span>
+            <span class="n">ctx</span><span class="o">=</span><span class="n">Context</span><span class="p">(</span>
+                <span class="n">accounts</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">&quot;pda_account&quot;</span><span class="p">:</span> <span class="n">pda</span><span class="p">,</span>
+                    <span class="s2">&quot;authority&quot;</span><span class="p">:</span> <span class="n">program</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">wallet</span><span class="o">.</span><span class="n">public_key</span><span class="p">,</span>
+                    <span class="s2">&quot;system_program&quot;</span><span class="p">:</span> <span class="n">SYSTEM_PROGRAM_ID</span><span class="p">,</span>  <span class="c1"># System Program ID</span>
+                <span class="p">},</span>
+                <span class="n">signers</span><span class="o">=</span><span class="p">[</span><span class="n">user</span><span class="p">],</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PDA Resized | Transaction: </span><span class="si">{</span><span class="n">tx_resize</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Wait for confirmation before updating</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Now, update the stored message</span>
+    <span class="n">tx_update</span><span class="p">:</span> <span class="n">Signature</span> <span class="o">=</span> <span class="k">await</span> <span class="n">program</span><span class="o">.</span><span class="n">rpc</span><span class="p">[</span><span class="s2">&quot;update_data&quot;</span><span class="p">](</span>
+        <span class="n">new_message</span><span class="p">,</span>
+        <span class="n">ctx</span><span class="o">=</span><span class="n">Context</span><span class="p">(</span>
+            <span class="n">accounts</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;pda_account&quot;</span><span class="p">:</span> <span class="n">pda</span><span class="p">,</span>
+                <span class="s2">&quot;authority&quot;</span><span class="p">:</span> <span class="n">program</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">wallet</span><span class="o">.</span><span class="n">public_key</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="n">signers</span><span class="o">=</span><span class="p">[</span><span class="n">user</span><span class="p">],</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;PDA Updated with message: </span><span class="si">{</span><span class="n">new_message</span><span class="si">}</span><span class="s2"> | Transaction: </span><span class="si">{</span><span class="n">tx_update</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Retrieve and print the updated message</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_pda_message</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">pda</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Data Retrieval</strong>: The <code class="docutils literal notranslate"><span class="pre">get_pda_message()</span></code> function provides an easy method to
+fetch and display messages stored within PDAs. By decoding the stored data and
+removing padding, the function ensures that the retrieved information is
+user-friendly and immediately useful.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_pda_message</span><span class="p">(</span><span class="n">program</span><span class="p">:</span> <span class="n">Program</span><span class="p">,</span> <span class="n">pda</span><span class="p">:</span> <span class="n">Pubkey</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetches the stored message from the PDA.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">account</span><span class="p">:</span> <span class="n">Container</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="n">program</span><span class="o">.</span><span class="n">account</span><span class="p">[</span><span class="s2">&quot;PDAAccount&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span>
+            <span class="n">pda</span>
+        <span class="p">)</span>
+        <span class="n">stored_message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">bytes</span><span class="p">(</span><span class="n">account</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="p">)</span>  <span class="c1"># Decode and remove padding</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Retrieved PDA Message: </span><span class="si">{</span><span class="n">stored_message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">stored_message</span>
+    <span class="k">except</span> <span class="n">AccountDoesNotExistError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No PDA found at </span><span class="si">{</span><span class="n">pda</span><span class="si">}</span><span class="s2">, needs creation.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>Automated Workflow</strong>: The script assess the existence of a PDA and determines
+the appropriate action autonomously. The <code class="docutils literal notranslate"><span class="pre">check_and_create_or_update_pda()</span></code>
+function orchestrates this flow, deciding whether to create a new account or
+update an existing one.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">check_and_create_or_update_pda</span><span class="p">(</span>
+    <span class="n">program</span><span class="p">:</span> <span class="n">Program</span><span class="p">,</span> <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if PDA exists. If not, creates it; otherwise, updates it.&quot;&quot;&quot;</span>
+    <span class="n">pda</span><span class="p">:</span> <span class="n">Pubkey</span> <span class="o">=</span> <span class="k">await</span> <span class="n">derive_pda</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">nonce</span><span class="p">)</span>
+
+    <span class="n">stored_message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_pda_message</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">pda</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">stored_message</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># PDA does not exist, create it</span>
+        <span class="k">await</span> <span class="n">create_pda</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">nonce</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># PDA exists, update it</span>
+        <span class="k">await</span> <span class="n">update_pda</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">nonce</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Intuitive CLI</strong>: The AnchorPy Client is wrapped in a command-line interface
+using Typer. This design allows to execute operations directly from the
+terminal, simply by providing messages and nonce values as input arguments. It
+reduces the need for intricate code management and makes the script accessible
+to a broader audience.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span>
+    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Argument</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The message to store in the PDA.&quot;</span>
+    <span class="p">),</span>
+    <span class="n">nonce</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
+        <span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The nonce for PDA derivation (default: 1).&quot;</span>
+    <span class="p">),</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;CLI command to create or update a PDA with a given message.&quot;&quot;&quot;</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">async_main</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">nonce</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>Building a decentralized application (dApp) on the Solana blockchain using
+Anchor and AnchorPy offers a streamlined and efficient development process.
+Leveraging the high-speed transactions characteristic of the Solana network,
+developers can create responsive applications that enhance user experience.
+Utilizing Program-Derived Addresses (PDAs), the application can
+deterministically organize and manage on-chain data without the need for complex
+address management. The Rust-based Solana Program facilitates secure and
+optimized operations, while the Python-based AnchorPy client provides a
+flexible, user-friendly interface for interacting with smart contracts. This
+approach offers a robust framework for developing scalable blockchain solutions
+capable of meeting diverse application needs. Whether for financial
+applications, identity management, or generalized data storage, this setup opens
+new avenues for innovation in blockchain technology.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find the complete code here: <a class="github reference external" href="https://github.com/jpchauvel/resizable_pda">jpchauvel/resizable_pda</a></p>
+</div>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+     
+    <a href="../pypy-benchmark/">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Exploring Python Performance: PyPy vs CPython vs Numba</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+     
+    <a href="../making-pyodide-powered-gpt-chat-app/">
+      <span>Creating a Pyodide-Powered GPT-3.5 Turbo Chat Application: A Proof-of-Concept</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  <div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item">
+
+
+
+<script>
+class ModeToggle {
+    static get MODE_KEY()
+    {
+        return "mode";
+    }
+    static get DARK_MODE()
+    {
+        return "dark";
+    }
+    static get LIGHT_MODE()
+    {
+        return "light";
+    }
+    static get AUTO_MODE()
+    {
+        return "auto";
+    }
+    static get ID()
+    {
+        return "mode-toggle";
+    }
+    constructor()
+    {
+        let self = this; /* always follow the system prefers */
+        this.sysDarkPrefers.forEach((el) => {
+            el.addEventListener("click", () => {
+                self.notify();
+            });
+        });
+    } /* constructor() */
+    get sysDarkPrefers()
+    {
+        return document.querySelectorAll(".theme-switch-button");
+    }
+    get isSysDarkPrefer()
+    {
+        return this.sysDarkPrefers.matches;
+    }
+    get isDarkMode()
+    {
+        return this.mode === ModeToggle.DARK_MODE;
+    }
+    get isLightMode()
+    {
+        return this.mode === ModeToggle.LIGHT_MODE;
+    }
+    get hasMode()
+    {
+        return this.mode != null;
+    }
+    get mode()
+    {
+        return localStorage.getItem(ModeToggle.MODE_KEY);
+    } /* get the current mode on screen */
+    get modeStatus()
+    {
+        if (this.isLightMode || (!this.hasMode && this.isSysDarkPrefer)) {
+            return ModeToggle.LIGHT_MODE;
+        } else {
+            return this.mode;
+        }
+    }
+    flip()
+    {
+        if (this.modeStatus === ModeToggle.LIGHT_MODE) {
+            return ModeToggle.AUTO_MODE;
+        } else if (this.modeStatus == ModeToggle.AUTO_MODE) {
+            return ModeToggle.DARK_MODE;
+        } else {
+            return ModeToggle.LIGHT_MODE;
+        }
+    }
+    notify()
+    {
+        window.postMessage({
+            direction: ModeToggle.ID,
+            message: this.flip()
+        }, "*");
+    }
+} /* ModeToggle */
+const toggle = new ModeToggle();
+</script>
+<script>
+    $(function() {
+        const origin = "https://giscus.app";
+        const iframe = "iframe.giscus-frame";
+        const lightTheme = "light";
+        const darkTheme = "dark";
+        let initTheme = lightTheme;
+        if ($("html[data-mode=dark]").length > 0 || ($("html[data-mode]").length == 0 && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+            initTheme = darkTheme;
+        }
+        let giscusAttributes = {
+            "src": "https://giscus.app/client.js",
+            "data-repo": "jpchauvel/chauvel.org",
+            "data-repo-id": "R_kgDOLmkQMw",
+            "data-category": "Blog comments",
+            "data-category-id": "DIC_kwDOLmkQM84CeUKf",
+            "data-mapping": "pathname",
+            "data-reactions-enabled": "1",
+            "data-emit-metadata": "0",
+            "data-theme": initTheme,
+            "data-input-position": "bottom",
+            "data-lang": "en",
+            "crossorigin": "anonymous",
+            "async": ""
+        };
+        let giscusScript = document.createElement("script");
+        Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
+        document.getElementById("tail-wrapper").appendChild(giscusScript);
+        addEventListener("message", (event) => {
+            if (event.source === window && event.data && event.data.direction === ModeToggle.ID) {
+                /* global theme mode changed */
+                const mode = event.data.message;
+                const theme = (mode === ModeToggle.DARK_MODE ? darkTheme : lightTheme);
+                const message = {
+                    setConfig: {
+                        theme: theme
+                    }
+                };
+                const giscus = document.querySelector(iframe).contentWindow;
+                giscus.postMessage({
+                    giscus: message
+                }, origin);
+            }
+        });
+    });
+</script>
+<div id="tail-wrapper">
+</div>
+
+</div>
+  
+</div>
+                </footer>
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-solana">Why Solana?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-proof-of-concept-dapp">The Proof-of-Concept dApp</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-program-derived-address">What is a Program Derived Address?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solana-program">The Solana Program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pda-account">The PDA Account</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-createpda-context">The CreatePDA Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-anchorpy-client">The AnchorPy Client</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/blog/solana-dapp.md"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Jean-Pierre Chauvel.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__center">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
